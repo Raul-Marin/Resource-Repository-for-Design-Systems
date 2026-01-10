@@ -1,0 +1,5 @@
+            <input type="text" placeholder="Name" value={ds.name || ""} onChange={(e) => handleChange("name", e.target.value)} className={inputClass} />
+            <input type="text" placeholder="Company" value={ds.company || ""} onChange={(e) => handleChange("company", e.target.value)} className={inputClass} />
+            <input type="text" placeholder="Company Domain (e.g., salesforce.com)" value={ds.companyDomain || ""} onChange={(e) => handleChange("companyDomain", e.target.value)} className={inputClass} />
+            <input type="url" placeholder="URL" value={ds.url || ""} onChange={(e) => handleChange("url", e.target.value)} className={inputClass} />
+            <input type="url" placeholder="Figma Kit URL (optional)" value={ds.figmaKit || ""} onChange={(e) => handleChange("figmaKit", e.target.value)} className={inputClass} />
