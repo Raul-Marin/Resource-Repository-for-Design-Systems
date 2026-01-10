@@ -85,13 +85,17 @@ export function CustomCursor() {
         path.includes('/diagnose') || 
         path.includes('/design-system-showcase') ||
         path.includes('/components-showcase') ||
+        path.includes('/audit') ||
+        path.includes('/audit-showcase') ||
         path === '/components' ||
         hash.includes('#admin') || 
         hash.includes('#migrate') || 
         hash.includes('#cleanup') || 
         hash.includes('#diagnose') || 
         hash.includes('#design-system-showcase') ||
-        hash.includes('#components-showcase')
+        hash.includes('#components-showcase') ||
+        hash.includes('#audit') ||
+        hash.includes('#audit-showcase')
       );
     };
     

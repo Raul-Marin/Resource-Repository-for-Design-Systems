@@ -3,6 +3,7 @@
 @import './theme.css';
 @import './clouds.css';
 @import './retro-bg.css';
+@import './pixel-city.css';
 
 /* Prevent horizontal overflow globally */
 html, body {
@@ -33,7 +34,9 @@ html, body {
   .diagnose-panel,
   .diagnose-panel *,
   .cms-page,
-  .cms-page * {
+  .cms-page *,
+  .audit-showcase,
+  .audit-showcase * {
     cursor: auto !important;
   }
   
@@ -100,7 +103,13 @@ html, body {
   .cms-page [role="button"],
   .cms-page input[type="checkbox"],
   .cms-page input[type="radio"],
-  .cms-page select {
+  .cms-page select,
+  .audit-showcase button,
+  .audit-showcase a,
+  .audit-showcase [role="button"],
+  .audit-showcase input[type="checkbox"],
+  .audit-showcase input[type="radio"],
+  .audit-showcase select {
     cursor: pointer !important;
   }
 }

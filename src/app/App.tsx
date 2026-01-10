@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Sidebar } from "./components/Sidebar";
 import { FloatingToolbar } from "./components/FloatingToolbar";
 import { Rulers } from "./components/Rulers";
-import { GridOverlay } from "./components/GridOverlay";
 import { HomeSection } from "./components/HomeSection";
 import { DesignSystemsSection } from "./components/DesignSystemsSection";
 import { ToolsSection } from "./components/ToolsSection";
@@ -29,6 +28,7 @@ import { DesignSystemShowcase } from "./components/DesignSystemShowcase";
 import { ComponentsShowcase } from "./components/ComponentsShowcase";
 import { UpdateLightning } from "./components/UpdateLightning";
 import { QuickTestContributor } from "./components/QuickTestContributor";
+import { AuditShowcase } from "./components/AuditShowcase";
 
 type Section = "home" | "design-systems" | "tools" | "jobs" | "readings" | "changelog" | "about" | "contributors";
 
@@ -47,11 +47,12 @@ function App() {
   const [showComponentsShowcase, setShowComponentsShowcase] = useState(false);
   const [showUpdateLightning, setShowUpdateLightning] = useState(false);
   const [showQuickTest, setShowQuickTest] = useState(false);
+  const [showAuditShowcase, setShowAuditShowcase] = useState(false);
   
   // Detectar si estamos en modo admin (cualquier página de CMS)
   const isAdminMode = showAdmin || showMigrate || showMigrateJobs || showMigrateContributors || 
                       showMigrateTools || showCleanup || showDiagnose || showSubmissionsDiagnose ||
-                      showDesignSystemShowcase || showComponentsShowcase || showUpdateLightning || showQuickTest;
+                      showDesignSystemShowcase || showComponentsShowcase || showUpdateLightning || showQuickTest || showAuditShowcase;
 
   // Check for admin mode or migrate mode via URL
   useEffect(() => {
@@ -118,6 +119,10 @@ function App() {
       // Check for quick test mode
       if (hash === '#quick-test' || search.includes('quick-test') || pathname.includes('/quick-test')) {
         setShowQuickTest(true);
+      }
+      
+      if (hash === '#audit' || search.includes('audit') || pathname.includes('/audit') || pathname.includes('/audit-showcase')) {
+        setShowAuditShowcase(true);
       }
     };
     
@@ -222,6 +227,14 @@ function App() {
   // If quick test mode, show quick test panel
   if (showQuickTest) {
     return <QuickTestContributor />;
+  }
+
+  // If audit showcase mode, show audit showcase panel
+  if (showAuditShowcase) {
+    return <AuditShowcase onBack={() => {
+      setShowAuditShowcase(false);
+      window.history.pushState({}, '', '/');
+    }} />;
   }
 
   return (
