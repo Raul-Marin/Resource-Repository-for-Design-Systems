@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography Showcase - Design Systems Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.4;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .typography-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .typography-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .typography-preview {
+            width: 100%;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typography-info {
+            padding: 0.75rem;
+            background: white;
+        }
+
+        .typography-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .typography-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .typography-detail {
+            font-size: 0.6875rem;
+            color: #4b5563;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
+        }
+
+        .typography-detail-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .copy-button {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: #374151;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .copy-button:hover {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+
+        .font-family-group {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .font-family-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .font-family-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .font-family-info {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .weight-samples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .weight-sample {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .weight-label {
+            font-size: 0.625rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .weight-preview {
+            font-size: 1.25rem;
+            color: #111827;
+        }
+
+        .size-ramp {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .size-sample {
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .size-label {
+            font-size: 0.625rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .size-preview {
+            color: #111827;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .badge-google {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-shadcn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-tailwind {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: #111827;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Typography Showcase</h1>
+            <p class="subtitle">Complete visual reference of all typography styles and properties</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Font Families</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Base Scale Sizes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Font Weights</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Line Heights</div>
+            </div>
+        </div>
+
+        <!-- Font Families -->
+        <div class="section">
+            <h2 class="section-title">Font Families</h2>
+            <div class="grid">
+                <div class="font-family-group">
+                    <div class="font-family-header">
+                        <span class="font-family-name">Poppins</span>
+                        <span class="badge badge-google">Google Fonts</span>
+                        <span class="font-family-info">Primary System Font</span>
+                    </div>
+                    <div class="weight-samples">
+                        <div class="weight-sample">
+                            <div class="weight-label">300 (Light) - H1</div>
+                            <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 300;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">400 (Normal) - H2, H4, Body</div>
+                            <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 400;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">500 (Medium) - Used in components</div>
+                            <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 500;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">600 (Semibold) - H3</div>
+                            <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 600;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">700 (Bold) - Used in components</div>
+                            <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 700;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-family-group">
+                    <div class="font-family-header">
+                        <span class="font-family-name">Inter</span>
+                        <span class="badge badge-google">Google Fonts</span>
+                        <span class="font-family-info">Admin & Sidebar</span>
+                    </div>
+                    <div class="weight-samples">
+                        <div class="weight-sample">
+                            <div class="weight-label">400 (Normal) - Default</div>
+                            <div class="weight-preview" style="font-family: 'Inter', sans-serif; font-weight: 400;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">500 (Medium) - CustomCursor</div>
+                            <div class="weight-preview" style="font-family: 'Inter', sans-serif; font-weight: 500;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">600 (Semibold) - Used in components</div>
+                            <div class="weight-preview" style="font-family: 'Inter', sans-serif; font-weight: 600;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                        <div class="weight-sample">
+                            <div class="weight-label">700 (Bold) - Badges</div>
+                            <div class="weight-preview" style="font-family: 'Inter', sans-serif; font-weight: 700;">It's design, it's craft, it's attention to detail</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-family-group">
+                    <div class="font-family-header">
+                        <span class="font-family-name">Caveat</span>
+                        <span class="badge badge-google">Google Fonts</span>
+                        <span class="font-family-info">Decorative</span>
+                    </div>
+                    <div class="weight-samples">
+                        <div class="weight-sample">
+                            <div class="weight-label">600 (Semibold) - HomeSection</div>
+                            <div class="weight-preview" style="font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.5rem;">human-curated</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-family-group">
+                    <div class="font-family-header">
+                        <span class="font-family-name">Pixelify Sans</span>
+                        <span class="badge badge-google">Google Fonts</span>
+                        <span class="font-family-info">Decorative</span>
+                    </div>
+                    <div class="weight-samples">
+                        <div class="weight-sample">
+                            <div class="weight-label">400 (Normal) - Default</div>
+                            <div class="weight-preview" style="font-family: 'Pixelify Sans', cursive; font-weight: 400; font-size: 1.5rem;">AI Era</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Base Typography Scale -->
+        <div class="section">
+            <h2 class="section-title">Base Typography Scale <span class="badge badge-shadcn">shadcn/ui</span></h2>
+            <div class="grid">
+                <div class="typography-card" data-copy="h1 { font-size: var(--text-4xl); font-weight: var(--font-weight-light); line-height: 1.25; }">
+                    <div class="typography-preview">
+                        <h1 style="font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 300; line-height: 1.25; margin: 0;">Heading 1</h1>
+                    </div>
+                    <div class="typography-info">
+                        <div class="typography-name">H1 - Heading 1</div>
+                        <div class="typography-details">
+                            <div class="typography-detail"><span class="typography-detail-label">Size:</span> 48px (--text-4xl)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Weight:</span> 300 (light)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Line Height:</span> 1.25</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Font:</span> Poppins</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="typography-card" data-copy="h2 { font-size: var(--text-2xl); font-weight: var(--font-weight-normal); line-height: 1.25; }">
+                    <div class="typography-preview">
+                        <h2 style="font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 400; line-height: 1.25; margin: 0;">Heading 2</h2>
+                    </div>
+                    <div class="typography-info">
+                        <div class="typography-name">H2 - Heading 2</div>
+                        <div class="typography-details">
+                            <div class="typography-detail"><span class="typography-detail-label">Size:</span> 32px (--text-2xl)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Weight:</span> 400 (normal)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Line Height:</span> 1.25</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Font:</span> Poppins</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="typography-card" data-copy="h3 { font-size: var(--text-xl); font-weight: var(--font-weight-medium); line-height: 1.25; }">
+                    <div class="typography-preview">
+                        <h3 style="font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 600; line-height: 1.25; margin: 0;">Heading 3</h3>
+                    </div>
+                    <div class="typography-info">
+                        <div class="typography-name">H3 - Heading 3</div>
+                        <div class="typography-details">
+                            <div class="typography-detail"><span class="typography-detail-label">Size:</span> 24px (--text-xl)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Weight:</span> 600 (medium)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Line Height:</span> 1.25</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Font:</span> Poppins</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="typography-card" data-copy="h4 { font-size: var(--text-lg); font-weight: var(--font-weight-normal); line-height: 1.25; }">
+                    <div class="typography-preview">
+                        <h4 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; line-height: 1.25; margin: 0;">Heading 4</h4>
+                    </div>
+                    <div class="typography-info">
+                        <div class="typography-name">H4 - Heading 4</div>
+                        <div class="typography-details">
+                            <div class="typography-detail"><span class="typography-detail-label">Size:</span> 18px (--text-lg)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Weight:</span> 400 (normal)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Line Height:</span> 1.25</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Font:</span> Poppins</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="typography-card" data-copy="p { font-size: var(--text-base); font-weight: var(--font-weight-normal); line-height: 1.5; }">
+                    <div class="typography-preview">
+                        <p style="font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.5; margin: 0;">Paragraph text for body content and longer descriptions.</p>
+                    </div>
+                    <div class="typography-info">
+                        <div class="typography-name">P - Paragraph</div>
+                        <div class="typography-details">
+                            <div class="typography-detail"><span class="typography-detail-label">Size:</span> 15px (--text-base)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Weight:</span> 400 (normal)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Line Height:</span> 1.5</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Font:</span> Poppins</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="typography-card" data-copy="label { font-size: var(--text-sm); font-weight: var(--font-weight-normal); line-height: 1.4; }">
+                    <div class="typography-preview">
+                        <label style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.4; margin: 0;">Label text</label>
+                    </div>
+                    <div class="typography-info">
+                        <div class="typography-name">Label</div>
+                        <div class="typography-details">
+                            <div class="typography-detail"><span class="typography-detail-label">Size:</span> 14px (--text-sm)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Weight:</span> 400 (normal)</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Line Height:</span> 1.4</div>
+                            <div class="typography-detail"><span class="typography-detail-label">Font:</span> Poppins</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tailwind Font Sizes -->
+        <div class="section">
+            <h2 class="section-title">Tailwind Font Sizes <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="font-family-group">
+                <div class="size-ramp">
+                    <div class="size-sample">
+                        <div class="size-label">text-xs - 0.75rem (12px)</div>
+                        <div class="size-preview" style="font-size: 0.75rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-sm - 0.875rem (14px)</div>
+                        <div class="size-preview" style="font-size: 0.875rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-base - 1rem (16px)</div>
+                        <div class="size-preview" style="font-size: 1rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-lg - 1.125rem (18px)</div>
+                        <div class="size-preview" style="font-size: 1.125rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-xl - 1.25rem (20px)</div>
+                        <div class="size-preview" style="font-size: 1.25rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-2xl - 1.5rem (24px)</div>
+                        <div class="size-preview" style="font-size: 1.5rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-3xl - 1.875rem (30px)</div>
+                        <div class="size-preview" style="font-size: 1.875rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-4xl - 2.25rem (36px)</div>
+                        <div class="size-preview" style="font-size: 2.25rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">text-5xl - 3rem (48px)</div>
+                        <div class="size-preview" style="font-size: 3rem; font-family: 'Poppins', sans-serif;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Font Weights -->
+        <div class="section">
+            <h2 class="section-title">Font Weights</h2>
+            <div class="font-family-group">
+                <div class="weight-samples">
+                    <div class="weight-sample">
+                        <div class="weight-label">font-light - 300</div>
+                        <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 1.25rem;">Light weight text</div>
+                    </div>
+                    <div class="weight-sample">
+                        <div class="weight-label">font-normal - 400</div>
+                        <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 1.25rem;">Normal weight text</div>
+                    </div>
+                    <div class="weight-sample">
+                        <div class="weight-label">font-medium - 500</div>
+                        <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 1.25rem;">Medium weight text</div>
+                    </div>
+                    <div class="weight-sample">
+                        <div class="weight-label">font-semibold - 600</div>
+                        <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.25rem;">Semibold weight text</div>
+                    </div>
+                    <div class="weight-sample">
+                        <div class="weight-label">font-bold - 700</div>
+                        <div class="weight-preview" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.25rem;">Bold weight text</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Heights -->
+        <div class="section">
+            <h2 class="section-title">Line Heights <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="font-family-group">
+                <div class="size-ramp">
+                    <div class="size-sample">
+                        <div class="size-label">leading-none - 1</div>
+                        <div class="size-preview" style="line-height: 1; font-family: 'Poppins', sans-serif; font-size: 1rem;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">leading-tight - 1.25</div>
+                        <div class="size-preview" style="line-height: 1.25; font-family: 'Poppins', sans-serif; font-size: 1rem;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">leading-snug - 1.375</div>
+                        <div class="size-preview" style="line-height: 1.375; font-family: 'Poppins', sans-serif; font-size: 1rem;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">leading-normal - 1.5</div>
+                        <div class="size-preview" style="line-height: 1.5; font-family: 'Poppins', sans-serif; font-size: 1rem;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">leading-relaxed - 1.625</div>
+                        <div class="size-preview" style="line-height: 1.625; font-family: 'Poppins', sans-serif; font-size: 1rem;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">leading-loose - 2</div>
+                        <div class="size-preview" style="line-height: 2; font-family: 'Poppins', sans-serif; font-size: 1rem;">It's design, it's craft, it's attention to detail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Letter Spacing -->
+        <div class="section">
+            <h2 class="section-title">Letter Spacing (Tracking) <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="font-family-group">
+                <div class="size-ramp">
+                    <div class="size-sample">
+                        <div class="size-label">tracking-tight - -0.025em</div>
+                        <div class="size-preview" style="letter-spacing: -0.025em; font-family: 'Poppins', sans-serif; font-size: 1rem; text-transform: uppercase;">TRACKING TIGHT</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">tracking-normal - 0</div>
+                        <div class="size-preview" style="letter-spacing: 0; font-family: 'Poppins', sans-serif; font-size: 1rem; text-transform: uppercase;">TRACKING NORMAL</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">tracking-wide - 0.025em</div>
+                        <div class="size-preview" style="letter-spacing: 0.025em; font-family: 'Poppins', sans-serif; font-size: 1rem; text-transform: uppercase;">TRACKING WIDE</div>
+                    </div>
+                    <div class="size-sample">
+                        <div class="size-label">tracking-wider - 0.05em</div>
+                        <div class="size-preview" style="letter-spacing: 0.05em; font-family: 'Poppins', sans-serif; font-size: 1rem; text-transform: uppercase;">TRACKING WIDER</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monospace -->
+        <div class="section">
+            <h2 class="section-title">Monospace Font <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="font-family-group">
+                <div class="size-sample">
+                    <div class="size-label">font-mono (System Monospace)</div>
+                    <div class="size-preview" style="font-family: monospace; font-size: 1rem; background: #1f2937; color: #10b981; padding: 1rem; border-radius: 4px; line-height: 1.625;">
+                        <pre style="margin: 0; font-family: monospace; white-space: pre-wrap;">In this age of AI, if you really believe that development gets easier and it's more simple to create software, it's faster to create software. Then what is your differentiator?. It's design, it's craft, it's attention to detail. Dylan Field (Figma's CEO).</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+        function copyToClipboard(button) {
+            const card = button.closest('.typography-card');
+            const css = card.getAttribute('data-copy');
+            
+            navigator.clipboard.writeText(css).then(() => {
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

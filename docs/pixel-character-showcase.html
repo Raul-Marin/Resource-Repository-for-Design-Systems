@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Character Showcase - Design Systems Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.4;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .stat-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .character-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+        }
+
+        .character-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .character-preview {
+            width: 120px;
+            height: 140px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+        }
+
+        .character-preview svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .character-preview.robot-bg {
+            background: linear-gradient(to bottom, #f0fdf4, #dcfce7);
+        }
+
+        .character-preview.alien-bg {
+            background: linear-gradient(to bottom, #eff6ff, #dbeafe);
+        }
+
+        .character-preview.ghost-bg {
+            background: linear-gradient(to bottom, #fdf2f8, #fce7f3);
+        }
+
+        .character-preview.monster-bg {
+            background: linear-gradient(to bottom, #fffbeb, #fef3c7);
+        }
+
+        .character-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.375rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .character-index {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .character-info {
+            font-size: 0.6875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .character-badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .character-badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 0.25rem;
+            justify-content: center;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.2);
+        }
+
+        .animation-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Animations */
+        @keyframes blink {
+            0%, 48%, 52%, 100% {
+                height: 8px;
+            }
+            50% {
+                height: 2px;
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 90%, 100% {
+                transform: translateX(0);
+            }
+            93% {
+                transform: translateX(-3px);
+            }
+            96% {
+                transform: translateX(3px);
+            }
+        }
+
+        @keyframes bounce-subtle {
+            0%, 92%, 100% {
+                transform: translateY(0);
+            }
+            95% {
+                transform: translateY(-4px);
+            }
+            98% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes mouth-open {
+            0%, 90%, 100% {
+                height: 6px;
+            }
+            93% {
+                height: 2px;
+            }
+            96% {
+                height: 10px;
+            }
+        }
+
+        .animate-blink {
+            animation: blink 6s ease-in-out infinite;
+        }
+
+        .animate-wiggle {
+            animation: wiggle 8s ease-in-out infinite;
+        }
+
+        .animate-bounce-subtle {
+            animation: bounce-subtle 7s ease-in-out infinite;
+        }
+
+        .animate-mouth-open {
+            animation: mouth-open 5s ease-in-out infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Pixel Character Showcase</h1>
+            <p class="subtitle">Complete pixel character system - Design Systems Repository</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Animations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">17</div>
+                <div class="stat-label">Total Usages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Animation Coverage</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Pixel Characters <span class="badge badge-custom">✨ Custom</span></h2>
+            <div class="character-grid">
+                <!-- Robot (Index 0) -->
+                <div class="character-card">
+                    <div class="character-preview robot-bg">
+                        <svg viewBox="0 0 60 70" style="width: 100%; height: auto;">
+                            <rect x="10" y="0" width="10" height="10" fill="#2d5016"/>
+                            <rect x="20" y="0" width="20" height="10" fill="#2d5016"/>
+                            <rect x="40" y="0" width="10" height="10" fill="#2d5016"/>
+                            <rect x="0" y="10" width="10" height="10" fill="#2d5016"/>
+                            <rect x="10" y="10" width="40" height="30" fill="#5c8a3a"/>
+                            <rect x="50" y="10" width="10" height="10" fill="#2d5016"/>
+                            <rect x="15" y="15" width="8" height="8" fill="#fff"/>
+                            <rect x="37" y="15" width="8" height="8" fill="#fff" style="animation: blink 6s ease-in-out infinite;"/>
+                            <rect x="20" y="25" width="20" height="5" fill="#2d5016"/>
+                            <rect x="10" y="40" width="10" height="20" fill="#5c8a3a"/>
+                            <rect x="40" y="40" width="10" height="20" fill="#5c8a3a"/>
+                            <rect x="10" y="60" width="10" height="10" fill="#2d5016"/>
+                            <rect x="40" y="60" width="10" height="10" fill="#2d5016"/>
+                        </svg>
+                    </div>
+                    <div class="character-name">Robot</div>
+                    <div class="character-index">Index: 0</div>
+                    <div class="character-info">Robot verde - guiña ojo ocasionalmente</div>
+                    <div class="animation-badge">blink (6s)</div>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #5c8a3a;" title="#5c8a3a - Primary Green"></div>
+                        <div class="color-swatch" style="background: #2d5016;" title="#2d5016 - Dark Green"></div>
+                        <div class="color-swatch" style="background: #fff; border: 1px solid #d1d5db;" title="#fff - White"></div>
+                    </div>
+                    <span class="character-badge character-badge-custom">Custom</span>
+                </div>
+
+                <!-- Alien (Index 1) -->
+                <div class="character-card">
+                    <div class="character-preview alien-bg animate-wiggle">
+                        <svg viewBox="0 0 50 60" style="width: 100%; height: auto;">
+                            <rect x="10" y="0" width="30" height="10" fill="#1e3a8a"/>
+                            <rect x="0" y="10" width="10" height="10" fill="#1e3a8a"/>
+                            <rect x="10" y="10" width="30" height="20" fill="#3b82f6"/>
+                            <rect x="40" y="10" width="10" height="10" fill="#1e3a8a"/>
+                            <rect x="12" y="15" width="6" height="10" fill="#000"/>
+                            <rect x="32" y="15" width="6" height="10" fill="#000"/>
+                            <rect x="0" y="20" width="10" height="10" fill="#3b82f6"/>
+                            <rect x="40" y="20" width="10" height="10" fill="#3b82f6"/>
+                            <rect x="10" y="30" width="30" height="10" fill="#3b82f6"/>
+                            <rect x="5" y="40" width="10" height="15" fill="#3b82f6"/>
+                            <rect x="35" y="40" width="10" height="15" fill="#3b82f6"/>
+                            <rect x="5" y="55" width="10" height="5" fill="#1e3a8a"/>
+                            <rect x="35" y="55" width="10" height="5" fill="#1e3a8a"/>
+                        </svg>
+                    </div>
+                    <div class="character-name">Alien</div>
+                    <div class="character-index">Index: 1</div>
+                    <div class="character-info">Alien azul - se mueve de lado a lado</div>
+                    <div class="animation-badge">wiggle (8s)</div>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #3b82f6;" title="#3b82f6 - Primary Blue"></div>
+                        <div class="color-swatch" style="background: #1e3a8a;" title="#1e3a8a - Dark Blue"></div>
+                        <div class="color-swatch" style="background: #000;" title="#000 - Black"></div>
+                    </div>
+                    <span class="character-badge character-badge-custom">Custom</span>
+                </div>
+
+                <!-- Ghost (Index 2) -->
+                <div class="character-card">
+                    <div class="character-preview ghost-bg animate-bounce-subtle">
+                        <svg viewBox="0 0 50 60" style="width: 100%; height: auto;">
+                            <rect x="10" y="0" width="30" height="10" fill="#ec4899"/>
+                            <rect x="0" y="10" width="50" height="30" fill="#ec4899"/>
+                            <rect x="10" y="15" width="8" height="8" fill="#fff"/>
+                            <rect x="32" y="15" width="8" height="8" fill="#fff"/>
+                            <rect x="13" y="18" width="3" height="3" fill="#000"/>
+                            <rect x="35" y="18" width="3" height="3" fill="#000"/>
+                            <rect x="0" y="40" width="10" height="10" fill="#ec4899"/>
+                            <rect x="10" y="50" width="10" height="10" fill="#ec4899"/>
+                            <rect x="20" y="40" width="10" height="10" fill="#ec4899"/>
+                            <rect x="30" y="50" width="10" height="10" fill="#ec4899"/>
+                            <rect x="40" y="40" width="10" height="10" fill="#ec4899"/>
+                        </svg>
+                    </div>
+                    <div class="character-name">Ghost</div>
+                    <div class="character-index">Index: 2</div>
+                    <div class="character-info">Fantasma rosa - sube y baja suavemente</div>
+                    <div class="animation-badge">bounce-subtle (7s)</div>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #ec4899;" title="#ec4899 - Primary Pink"></div>
+                        <div class="color-swatch" style="background: #fff; border: 1px solid #d1d5db;" title="#fff - White"></div>
+                        <div class="color-swatch" style="background: #000;" title="#000 - Black"></div>
+                    </div>
+                    <span class="character-badge character-badge-custom">Custom</span>
+                </div>
+
+                <!-- Monster/Cat (Index 3) -->
+                <div class="character-card">
+                    <div class="character-preview monster-bg">
+                        <svg viewBox="0 0 45 60" style="width: 100%; height: auto;">
+                            <rect x="5" y="0" width="35" height="10" fill="#fbbf24"/>
+                            <rect x="0" y="10" width="45" height="25" fill="#fde047"/>
+                            <rect x="8" y="15" width="10" height="8" fill="#fff"/>
+                            <rect x="27" y="15" width="10" height="8" fill="#fff"/>
+                            <rect x="11" y="17" width="4" height="4" fill="#000"/>
+                            <rect x="30" y="17" width="4" height="4" fill="#000"/>
+                            <rect x="10" y="26" width="25" height="6" fill="#dc2626" style="animation: mouth-open 5s ease-in-out infinite;"/>
+                            <rect x="5" y="35" width="10" height="20" fill="#fde047"/>
+                            <rect x="30" y="35" width="10" height="20" fill="#fde047"/>
+                            <rect x="5" y="55" width="10" height="5" fill="#fbbf24"/>
+                            <rect x="30" y="55" width="10" height="5" fill="#fbbf24"/>
+                        </svg>
+                    </div>
+                    <div class="character-name">Monster/Cat</div>
+                    <div class="character-index">Index: 3</div>
+                    <div class="character-info">Monstruo amarillo - abre y cierra la boca</div>
+                    <div class="animation-badge">mouth-open (5s)</div>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #fde047;" title="#fde047 - Primary Yellow"></div>
+                        <div class="color-swatch" style="background: #fbbf24;" title="#fbbf24 - Orange Accent"></div>
+                        <div class="color-swatch" style="background: #dc2626;" title="#dc2626 - Red Mouth"></div>
+                        <div class="color-swatch" style="background: #fff; border: 1px solid #d1d5db;" title="#fff - White"></div>
+                        <div class="color-swatch" style="background: #000;" title="#000 - Black"></div>
+                    </div>
+                    <span class="character-badge character-badge-custom">Custom</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Information -->
+        <div class="section">
+            <h2 class="section-title">Usage Information</h2>
+            <div style="background: white; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1.5rem;">
+                <h3 style="font-size: 0.875rem; font-weight: 600; color: #111827; margin-bottom: 1rem;">Component Usage</h3>
+                <pre style="background: #f9fafb; padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.75rem; line-height: 1.6; font-family: 'Courier New', monospace; color: #111827;"><code>import { PixelCharacter } from "./PixelCharacter";
+
+// Usage:
+&lt;PixelCharacter characterIndex={0} /&gt; // Robot verde
+&lt;PixelCharacter characterIndex={1} /&gt; // Alien azul
+&lt;PixelCharacter characterIndex={2} /&gt; // Fantasma rosa
+&lt;PixelCharacter characterIndex={3} /&gt; // Monstruo amarillo</code></pre>
+
+                <h3 style="font-size: 0.875rem; font-weight: 600; color: #111827; margin-top: 1.5rem; margin-bottom: 1rem;">Character Mapping</h3>
+                <div style="background: #f9fafb; padding: 1rem; border-radius: 4px; font-size: 0.75rem; line-height: 1.8; font-family: 'Courier New', monospace;">
+                    <div style="margin-bottom: 0.5rem;"><strong>"tools"</strong> → Index 0 (Robot)</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>"design-systems"</strong> → Index 1 (Alien)</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>"jobs"</strong> → Index 2 (Ghost)</div>
+                    <div><strong>"resources"</strong> → Index 3 (Monster/Cat)</div>
+                </div>
+
+                <h3 style="font-size: 0.875rem; font-weight: 600; color: #111827; margin-top: 1.5rem; margin-bottom: 1rem;">Technical Details</h3>
+                <div style="background: #f9fafb; padding: 1rem; border-radius: 4px; font-size: 0.75rem; line-height: 1.8;">
+                    <div style="margin-bottom: 0.5rem;"><strong>Location:</strong> <code style="background: #e5e7eb; padding: 0.125rem 0.25rem; border-radius: 2px;">src/app/components/PixelCharacter.tsx</code></div>
+                    <div style="margin-bottom: 0.5rem;"><strong>Format:</strong> Inline SVG elements</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>Total Characters:</strong> 4 unique pixel art characters</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>Animation Coverage:</strong> 100% (all characters have animations)</div>
+                    <div><strong>Total Usages:</strong> 17 instances across 10 files</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tooltip functionality for color swatches
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorSwatches = document.querySelectorAll('.color-swatch');
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener('click', function() {
+                    const color = this.style.backgroundColor;
+                    const rgb = color.match(/\d+/g);
+                    if (rgb && rgb.length >= 3) {
+                        const hex = '#' + rgb.map(x => {
+                            const hex = parseInt(x).toString(16);
+                            return hex.length === 1 ? '0' + hex : hex;
+                        }).join('');
+                        
+                        // Copy to clipboard
+                        navigator.clipboard.writeText(hex).then(() => {
+                            const originalTitle = this.getAttribute('title');
+                            this.setAttribute('title', 'Copied! ' + hex);
+                            setTimeout(() => {
+                                this.setAttribute('title', originalTitle);
+                            }, 2000);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

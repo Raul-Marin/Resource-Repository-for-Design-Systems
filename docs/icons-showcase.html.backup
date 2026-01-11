@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icons Showcase - Design Systems Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.4;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .stat-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .badge-lucide {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        /* Icon Grid */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .icon-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .icon-preview {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9fafb;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .icon-preview svg {
+            width: 24px;
+            height: 24px;
+            color: #3b82f6;
+        }
+
+        .icon-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.25rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .icon-category {
+            font-size: 0.6875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+            font-size: 0.625rem;
+            font-weight: 500;
+        }
+
+        .icon-badge-lucide {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .icon-badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid #3b82f6;
+        }
+
+        /* Custom Icon SVG Styles */
+        .custom-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #8b5cf6;
+        }
+
+        /* Lucide Icon SVG Styles */
+        .lucide-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #3b82f6;
+        }
+
+        .copy-button {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-top: 0.5rem;
+        }
+
+        .copy-button:hover {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Icons Showcase</h1>
+            <p class="subtitle">Complete icon system - Design Systems Repository</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">45</div>
+                <div class="stat-label">Lucide Icons</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Custom Icons</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">54</div>
+                <div class="stat-label">Total Icons</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">lucide-react</div>
+                <div class="stat-label">v0.487.0</div>
+            </div>
+        </div>
+
+        <!-- Custom Icons -->
+        <div class="section">
+            <h2 class="section-title">Custom Icons <span class="badge badge-custom">✨ Custom</span></h2>
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V10.4C22 10.7314 21.7314 11 21.4 11H2.6C2.26863 11 2 10.7314 2 10.4V4.6C2 4.26863 2.26863 4 2.6 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 10V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 10V19.4C2 19.7314 2.26863 20 2.6 20H11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 18.5C17.1338 18.5 18.5 17.1815 18.5 14C18.5 17.1815 19.8567 18.5 23 18.5C19.8567 18.5 18.5 19.8567 18.5 23C18.5 19.8567 17.1338 18.5 14 18.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">FolderSparkleIcon</div>
+                    <div class="icon-category">Design Systems</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'FolderSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 10.5C16.1338 10.5 17.5 9.18154 17.5 6C17.5 9.18154 18.8567 10.5 22 10.5C18.8567 10.5 17.5 11.8567 17.5 15C17.5 11.8567 16.1338 10.5 14 10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">PackageSparkleIcon</div>
+                    <div class="icon-category">Tools</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'PackageSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V5H9V5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 18.5C17.1338 18.5 18.5 17.1815 18.5 14C18.5 17.1815 19.8567 18.5 23 18.5C19.8567 18.5 18.5 19.8567 18.5 23C18.5 19.8567 17.1338 18.5 14 18.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">ClipboardSparkleIcon</div>
+                    <div class="icon-category">Jobs</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'ClipboardSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 19.5C4 18.6716 4.67157 18 5.5 18H20.5C21.3284 18 22 18.6716 22 19.5C22 20.3284 21.3284 21 20.5 21H5.5C4.67157 21 4 20.3284 4 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 5.5C4 4.67157 4.67157 4 5.5 4H11.5C12.3284 4 13 4.67157 13 5.5V19.5C13 20.3284 12.3284 21 11.5 21H5.5C4.67157 21 4 20.3284 4 19.5V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 18.5C17.1338 18.5 18.5 17.1815 18.5 14C18.5 17.1815 19.8567 18.5 23 18.5C19.8567 18.5 18.5 19.8567 18.5 23C18.5 19.8567 17.1338 18.5 14 18.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">BookSparkleIcon</div>
+                    <div class="icon-category">Readings</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'BookSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 18.5C17.1338 18.5 18.5 17.1815 18.5 14C18.5 17.1815 19.8567 18.5 23 18.5C19.8567 18.5 18.5 19.8567 18.5 23C18.5 19.8567 17.1338 18.5 14 18.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">ChatSparkleIcon</div>
+                    <div class="icon-category">About</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'ChatSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 18.5C17.1338 18.5 18.5 17.1815 18.5 14C18.5 17.1815 19.8567 18.5 23 18.5C19.8567 18.5 18.5 19.8567 18.5 23C18.5 19.8567 17.1338 18.5 14 18.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">HomeSparkleIcon</div>
+                    <div class="icon-category">Home</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'HomeSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 18.5C17.1338 18.5 18.5 17.1815 18.5 14C18.5 17.1815 19.8567 18.5 23 18.5C19.8567 18.5 18.5 19.8567 18.5 23C18.5 19.8567 17.1338 18.5 14 18.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">RefreshSparkleIcon</div>
+                    <div class="icon-category">Actions</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'RefreshSparkleIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 84.8528L85.8822 16.9706C95.2548 7.59798 110.451 7.59798 119.823 16.9706V16.9706C129.196 26.3431 129.196 41.5391 119.823 50.9117L68.5581 102.177" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+                            <path d="M69.2652 101.47L119.823 50.9117C129.196 41.5391 144.392 41.5391 153.765 50.9117L154.118 51.2652C163.491 60.6378 163.491 75.8338 154.118 85.2063L92.7248 146.6C89.6006 149.724 89.6006 154.789 92.7248 157.913L105.331 170.52" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+                            <path d="M102.853 33.9411L52.6482 84.1457C43.2756 93.5183 43.2756 108.714 52.6482 118.087V118.087C62.0208 127.459 77.2167 127.459 86.5893 118.087L136.794 67.8822" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">MCPIcon</div>
+                    <div class="icon-category">MCP Protocol</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'MCPIcon')">Copy Name</button>
+                </div>
+
+                <div class="icon-card">
+                    <div class="icon-preview custom-icon">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="0" width="40" height="40" rx="4.5" fill="url(#antx-gradient-1)"/>
+                            <path d="M4.5,0 L35.5,0 C37.9852814,0 40,2.01471863 40,4.5 L40,35.5 C40,37.9852814 37.9852814,40 35.5,40 L4.5,40 C2.01471863,40 0,37.9852814 0,35.5 L0,4.5 C0,2.01471863 2.01471863,0 4.5,0 Z" fill="url(#antx-gradient-2)"/>
+                            <defs>
+                                <linearGradient id="antx-gradient-1" x1="50%" y1="0%" x2="50%" y2="100%">
+                                    <stop offset="0%" stop-color="#3DFFFB"/>
+                                    <stop offset="100%" stop-color="#3B86FF"/>
+                                </linearGradient>
+                                <linearGradient id="antx-gradient-2" x1="78.74%" y1="17.41%" x2="32.04%" y2="82.80%">
+                                    <stop offset="0%" stop-color="#024FC9"/>
+                                    <stop offset="100%" stop-color="#1383FF" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="icon-name">AntDesignXIcon</div>
+                    <div class="icon-category">Brand</div>
+                    <span class="icon-badge icon-badge-custom">Custom</span>
+                    <button class="copy-button" onclick="copyToClipboard(this, 'AntDesignXIcon')">Copy Name</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lucide Icons by Category -->
+        <div class="section">
+            <h2 class="section-title">Lucide React Icons <span class="badge badge-lucide">📦 Lucide React</span></h2>
+            
+            <div class="category-section">
+                <div class="category-title">Navigation Icons</div>
+                <div class="icon-grid">
+                    <div class="icon-card" data-icon="ArrowLeft">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">ArrowLeft</div>
+                        <div class="icon-category">Back navigation</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'ArrowLeft')">Copy Name</button>
+                    </div>
+                    <div class="icon-card" data-icon="ArrowRight">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">ArrowRight</div>
+                        <div class="icon-category">Forward navigation</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'ArrowRight')">Copy Name</button>
+                    </div>
+                    <div class="icon-card" data-icon="Home">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Home</div>
+                        <div class="icon-category">Home navigation</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Home')">Copy Name</button>
+                    </div>
+                    <div class="icon-card" data-icon="X">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">X</div>
+                        <div class="icon-category">Close, cancel</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'X')">Copy Name</button>
+                    </div>
+                    <div class="icon-card" data-icon="Menu">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Menu</div>
+                        <div class="icon-category">Mobile menu</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Menu')">Copy Name</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <div class="category-title">Action Icons</div>
+                <div class="icon-grid">
+                    <div class="icon-card" data-icon="Plus">
+                        <div class="icon-preview lucide-icon"></div>Plus</div>
+                        <div class="icon-category">Add, create</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Plus')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+       <div class="icon-card" data-icon="Pencil">
+                        <div class="icon-preview lucide-icon"></div>      <div class="icon-category">Edit</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Pencil')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="<div class="icon-card" data-icon="Trash2">
+                        <div class="icon-preview lucide-icon"></div>ry">Delete</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Trash2')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></d<div class="icon-card" data-icon="Copy">
+                        <div class="icon-preview lucide-icon"></div>                     <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Copy')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <di<div class="icon-card" data-icon="Check">
+                        <div class="icon-preview lucide-icon"></div>s="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Check')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Save</div><div class="icon-card" data-icon="Save">
+                        <div class="icon-preview lucide-icon"></div>ide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Save')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Upload</div>
+                        <div<div class="icon-card" data-icon="Upload">
+                        <div class="icon-preview lucide-icon"></div> <button class="copy-button" onclick="copyToClipboard(this, 'Upload')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Search</div>
+                        <div class="icon-category">Search<div class="icon-card" data-icon="Search">
+                        <div class="icon-preview lucide-icon"></div>onclick="copyToClipboard(this, 'Search')">Copy Name</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <div class="category-title">Section Icons</div>
+                <div class="icon-grid">
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Layers</div>
+                        <div class="icon-category">Design systems</div>
+              <div class="icon-card" data-icon="Layers">
+                        <div class="icon-preview lucide-icon"></div>ard(this, 'Layers')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Package</div>
+                        <div class="icon-category">Tools</div>
+                        <span class="icon-badge ico<div class="icon-card" data-icon="Package">
+                        <div class="icon-preview lucide-icon"></div>on>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">BookOpen</div>
+                        <div class="icon-category">Readings</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</<div class="icon-card" data-icon="BookOpen">
+                        <div class="icon-preview lucide-icon"></div> </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Briefcase</div>
+                        <div class="icon-category">Jobs</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <div class="icon-card" data-icon="Briefcase">
+                        <div class="icon-preview lucide-icon"></div>div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Users</div>
+                        <div class="icon-category">Contributors</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-bu<div class="icon-card" data-icon="Users">
+                        <div class="icon-preview lucide-icon"></div>                     <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">History</div>
+                        <div class="icon-category">Changelog</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(<div class="icon-card" data-icon="History">
+                        <div class="icon-preview lucide-icon"></div>section">
+                <div class="category-title">Link Icons</div>
+                <div class="icon-grid">
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">ExternalLink</div>
+                        <div class="icon-category">External links</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'ExternalLin<div class="icon-card" data-icon="ExternalLink">
+                        <div class="icon-preview lucide-icon"></div>iew lucide-icon"></div>
+                        <div class="icon-name">ArrowUpRight</div>
+                        <div class="icon-category">New tab</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'ArrowUpRight')">Copy Name</button>
+      <div class="icon-card" data-icon="ArrowUpRight">
+                        <div class="icon-preview lucide-icon"></div>                  <div class="icon-name">Figma</div>
+                        <div class="icon-category">Figma links</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Figma')">Copy Name</button>
+                    </div>
+            <div class="icon-card" data-icon="Figma">
+                        <div class="icon-preview lucide-icon"></div>n-name">Linkedin</div>
+                        <div class="icon-category">LinkedIn</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Linkedin')">Copy Name</button>
+                    </div>
+                    <div class="icon-ca<div class="icon-card" data-icon="Linkedin">
+                        <div class="icon-preview lucide-icon"></div>                   <div class="icon-category">YouTube</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Youtube')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <<div class="icon-card" data-icon="Youtube">
+                        <div class="icon-preview lucide-icon"></div>con-category">Website</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Globe')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-i<div class="icon-card" data-icon="Globe">
+                        <div class="icon-preview lucide-icon"></div>                 <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Mail')">Copy Name</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <div class="category-title">Statu<div class="icon-card" data-icon="Mail">
+                        <div class="icon-preview lucide-icon"></div>review lucide-icon"></div>
+                        <div class="icon-name">CheckCircle</div>
+                        <div class="icon-category">Success</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'CheckCircle')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="i<div class="icon-card" data-icon="CheckCircle">
+                        <div class="icon-preview lucide-icon"></div> icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'AlertCircle')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Loader2</div>
+<div class="icon-card" data-icon="AlertCircle">
+                        <div class="icon-preview lucide-icon"></div>span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Loader2')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Info</div>
+                        <div class=<div class="icon-card" data-icon="Loader2">
+                        <div class="icon-preview lucide-icon"></div>button class="copy-button" onclick="copyToClipboard(this, 'Info')">Copy Name</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <div class="category-title">Feature Icons</div>
+                <div class="icon-grid">
+                    <div class="icon-card">
+  <div class="icon-card" data-icon="Info">
+                        <div class="icon-preview lucide-icon"></div>             <div class="icon-category">Logo, decorative</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Sparkles')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Bot</div>
+                        <div class="icon-category">AI features</div>
+               <div class="icon-card" data-icon="Sparkles">
+                        <div class="icon-preview lucide-icon"></div>rd(this, 'Bot')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Brain</div>
+                        <div class="icon-category">AI, intelligence</div>
+                        <span class="icon-badge ic<div class="icon-card" data-icon="Bot">
+                        <div class="icon-preview lucide-icon"></div>n>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Heart</div>
+                        <div class="icon-category">Likes, favorites</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide<div class="icon-card" data-icon="Brain">
+                        <div class="icon-preview lucide-icon"></div></div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Clock</div>
+                        <div class="icon-category">Time, schedules</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                       <div class="icon-card" data-icon="Heart">
+                        <div class="icon-preview lucide-icon"></div> class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Zap</div>
+                        <div class="icon-category">Quick actions</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclic<div class="icon-card" data-icon="Clock">
+                        <div class="icon-preview lucide-icon"></div>       <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Code</div>
+                        <div class="icon-category">Code, development</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Code'<div class="icon-card" data-icon="Zap">
+                        <div class="icon-preview lucide-icon"></div>           <div class="category-title">Other Icons</div>
+                <div class="icon-grid">
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Palette</div>
+                        <div class="icon-category">Colors</div>
+                <div class="icon-card" data-icon="Code">
+                        <div class="icon-preview lucide-icon"></div>d(this, 'Palette')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Type</div>
+                        <div class="icon-category">Typography</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Type')">Copy Name</button>
+                    </div>
+                    <div class="icon-card" data-icon="Palette">
+                        <div class="icon-preview lucide-icon"></div>Box</div>
+                        <div class="icon-category">Components</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Box')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+        <div class="icon-card" data-icon="Type">
+                        <div class="icon-preview lucide-icon"></div>      <div class="icon-category">Grids</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Grid3x3')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="ic<div class="icon-card" data-icon="Box">
+                        <div class="icon-preview lucide-icon"></div>>Media</div>
+                        <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Image')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+  <div class="icon-card" data-icon="Grid3x3">
+                        <div class="icon-preview lucide-icon"></div>          <span class="icon-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Code2')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div<div class="icon-card" data-icon="Image">
+                        <div class="icon-preview lucide-icon"></div>on-badge icon-badge-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Database')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">B<div class="icon-card" data-icon="Code2">
+                        <div class="icon-preview lucide-icon"></div>-lucide">Lucide</span>
+                        <button class="copy-button" onclick="copyToClipboard(this, 'Building2')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">MapPin</div>
+            <div class="icon-card" data-icon="Database">
+                        <div class="icon-preview lucide-icon"></div>                   <button class="copy-button" onclick="copyToClipboard(this, 'MapPin')">Copy Name</button>
+                    </div>
+                    <div class="icon-card">
+                        <div class="icon-preview lucide-icon"></div>
+                        <div class="icon-name">Settings</div>
+                        <div class="icon-c<div class="icon-card" data-icon="Building2">
+                        <div class="icon-preview lucide-icon"></div>n class="copy-button" onclick="copyToClipboard(this, 'Settings')">Copy Name</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Lucide icons SVG paths (from lucide-icons library)
+        const lucideIcons = {
+            'ArrowLeft': '<path d="m12 19-7-7 7-7"/><<div class="icon-card" data-icon="MapPin">
+                        <div class="icon-preview lucide-icon"></div>11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+            'X': '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+            'Menu': '<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>',
+            'Plus': '<path d="M5 12h14"/><path d="M12 5v14"/>',
+   <div class="icon-card" data-icon="Settings">
+                        <div class="icon-preview lucide-icon"></div>19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+            'Copy': '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2"/>',
+            'Check': '<polyline points="20 6 9 17 4 12"/>',
+            'Save': '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
+            'Upload': '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>',
+            'Search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
+            'Layers': '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+            'Package': '<path d="m7.5 4.27 9 5.15"/><path d="M21 7.5v9l-9 5.19M3 7.5l9 5.19M12 22V12"/><path d="M21 7.5l-9-5.19L3 7.5l9 5.19z"/>',
+            'BookOpen': '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+            'Briefcase': '<rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+            'Users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+            'History': '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>',
+            'ExternalLink': '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+            'ArrowUpRight': '<path d="M7 17L17 7"/><path d="M7 7h10v10"/>',
+            'Figma': '<path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/>',
+            'Linkedin': '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>',
+            'Youtube': '<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
+            'Globe': '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+            'Mail': '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+            'CheckCircle': '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+            'AlertCircle': '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>',
+            'Loader2': '<path d="M21 12a9 9 0 1 1-6.219-8.56"/>',
+            'Info': '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/>',
+            'Sparkles': '<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>',
+            'Bot': '<rect width="18" height="10" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+            'Brain': '<path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588 4 4 0 0 0 7.636 2.106 3.2 3.2 0 0 0 .164-.546c.44.183.94.283 1.46.283a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3 3 3 0 0 0-3 3v0"/><path d="M12 5v3"/><path d="M6 12h12"/><path d="M6 16h12"/>',
+            'Heart': '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>',
+            'Clock': '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+            'Zap': '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+            'Code': '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+            'Palette': '<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>',
+            'Type': '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/>',
+            'Box': '<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.08" y2="12"/>',
+            'Grid3x3': '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/>',
+            'Image': '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+            'Code2': '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="M14.5 4l-5 16"/>',
+            'Database': '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/><path d="M21 19c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+            'Building2': '<rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>',
+            'MapPin': '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+            'Settings': '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>'
+        };
+
+        function renderLucideIcon(iconName) {
+            const svgPath = lucideIcons[iconName];
+            if (!svgPath) return '';
+            return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">${svgPath}</svg>`;
+        }
+
+        // Render all Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            const iconCards = document.querySelectorAll('.icon-card[data-icon]');
+            iconCards.forEach(card => {
+                const iconName = card.getAttribute('data-icon');
+                const preview = card.querySelector('.icon-preview.lucide-icon');
+                if (preview && lucideIcons[iconName]) {
+                    preview.innerHTML = renderLucideIcon(iconName);
+                }
+            });
+        });
+
+        function copyToClipboard(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#10b981';
+                button.style.color = 'white';
+                button.style.borderColor = '#10b981';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#f3f4f6';
+                    button.style.color = '#374151';
+                    button.style.borderColor = '#e5e7eb';
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>

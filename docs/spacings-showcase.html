@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacings Showcase - Design Systems Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.4;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .badge-shadcn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-tailwind {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .spacing-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .spacing-preview {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid #5c5c5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .spacing-preview-inner {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e40af;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .spacing-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+            text-align: center;
+        }
+
+        .spacing-details {
+            font-size: 0.625rem;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .spacing-group {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .spacing-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .spacing-group-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .spacing-group-info {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .spacing-samples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .spacing-sample {
+            flex: 1;
+            min-width: 180px;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .spacing-label {
+            font-size: 0.625rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+
+        .spacing-value {
+            font-size: 0.625rem;
+            color: #4b5563;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: #111827;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Padding preview styles */
+        .padding-preview {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid #5c5c5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .padding-preview-inner {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e40af;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Margin preview styles */
+        .margin-preview {
+            width: 120px;
+            height: 120px;
+            background: #f3f4f6;
+            border: 1px dashed #9ca3af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .margin-preview-inner {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #991b1b;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Gap preview styles */
+        .gap-preview {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid #5c5c5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .gap-preview-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gap-preview-item {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e40af;
+            font-size: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Spacings Showcase</h1>
+            <p class="subtitle">Complete visual reference of all padding, margin, and gap values</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Padding Classes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Margin Classes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Gap Classes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8px, 16px</div>
+                <div class="stat-label">Most Common</div>
+            </div>
+        </div>
+
+        <!-- Padding -->
+        <div class="section">
+            <h2 class="section-title">Padding Values <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">All Padding (p-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-0 - 0px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: 100%; padding: 0;">0px</div>
+                        </div>
+                        <div class="spacing-value">0rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-1 - 4px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 8px); height: calc(100% - 8px); padding: 4px;">4px</div>
+                        </div>
+                        <div class="spacing-value">0.25rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-2 - 8px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 16px); height: calc(100% - 16px); padding: 8px;">8px</div>
+                        </div>
+                        <div class="spacing-value">0.5rem (most common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-3 - 12px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 24px); height: calc(100% - 24px); padding: 12px;">12px</div>
+                        </div>
+                        <div class="spacing-value">0.75rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-4 - 16px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 32px); height: calc(100% - 32px); padding: 16px;">16px</div>
+                        </div>
+                        <div class="spacing-value">1rem (very common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-6 - 24px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 48px); height: calc(100% - 48px); padding: 24px;">24px</div>
+                        </div>
+                        <div class="spacing-value">1.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-8 - 32px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 64px); height: calc(100% - 64px); padding: 32px;">32px</div>
+                        </div>
+                        <div class="spacing-value">2rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">p-12 - 48px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 96px); height: calc(100% - 96px); padding: 48px;">48px</div>
+                        </div>
+                        <div class="spacing-value">3rem</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Horizontal Padding (px-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-2 - 8px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 16px); height: 100%; padding: 0 8px;">8px</div>
+                        </div>
+                        <div class="spacing-value">0.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-4 - 16px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 32px); height: 100%; padding: 0 16px;">16px</div>
+                        </div>
+                        <div class="spacing-value">1rem (very common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-6 - 24px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 48px); height: 100%; padding: 0 24px;">24px</div>
+                        </div>
+                        <div class="spacing-value">1.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-8 - 32px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 64px); height: 100%; padding: 0 32px;">32px</div>
+                        </div>
+                        <div class="spacing-value">2rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-12 - 48px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 96px); height: 100%; padding: 0 48px;">48px</div>
+                        </div>
+                        <div class="spacing-value">3rem (responsive)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-16 - 64px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 128px); height: 100%; padding: 0 64px;">64px</div>
+                        </div>
+                        <div class="spacing-value">4rem (responsive)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Vertical Padding (py-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">py-2 - 8px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: calc(100% - 16px); padding: 8px 0;">8px</div>
+                        </div>
+                        <div class="spacing-value">0.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">py-4 - 16px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: calc(100% - 32px); padding: 16px 0;">16px</div>
+                        </div>
+                        <div class="spacing-value">1rem (very common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">py-6 - 24px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: calc(100% - 48px); padding: 24px 0;">24px</div>
+                        </div>
+                        <div class="spacing-value">1.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">py-8 - 32px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: calc(100% - 64px); padding: 32px 0;">32px</div>
+                        </div>
+                        <div class="spacing-value">2rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">py-12 - 48px</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: calc(100% - 96px); padding: 48px 0;">48px</div>
+                        </div>
+                        <div class="spacing-value">3rem (responsive)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Margin -->
+        <div class="section">
+            <h2 class="section-title">Margin Values <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Top Margin (mt-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mt-2 - 8px</div>
+                        <div class="margin-preview" style="padding-top: 8px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">8px</div>
+                        </div>
+                        <div class="spacing-value">0.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mt-4 - 16px</div>
+                        <div class="margin-preview" style="padding-top: 16px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">16px</div>
+                        </div>
+                        <div class="spacing-value">1rem (common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mt-6 - 24px</div>
+                        <div class="margin-preview" style="padding-top: 24px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">24px</div>
+                        </div>
+                        <div class="spacing-value">1.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mt-8 - 32px</div>
+                        <div class="margin-preview" style="padding-top: 32px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">32px</div>
+                        </div>
+                        <div class="spacing-value">2rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mt-12 - 48px</div>
+                        <div class="margin-preview" style="padding-top: 48px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">48px</div>
+                        </div>
+                        <div class="spacing-value">3rem</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Bottom Margin (mb-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mb-2 - 8px</div>
+                        <div class="margin-preview" style="padding-bottom: 8px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">8px</div>
+                        </div>
+                        <div class="spacing-value">0.5rem (common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mb-4 - 16px</div>
+                        <div class="margin-preview" style="padding-bottom: 16px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">16px</div>
+                        </div>
+                        <div class="spacing-value">1rem (common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mb-6 - 24px</div>
+                        <div class="margin-preview" style="padding-bottom: 24px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">24px</div>
+                        </div>
+                        <div class="spacing-value">1.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mb-8 - 32px</div>
+                        <div class="margin-preview" style="padding-bottom: 32px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">32px</div>
+                        </div>
+                        <div class="spacing-value">2rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mb-12 - 48px</div>
+                        <div class="margin-preview" style="padding-bottom: 48px;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 80%;">48px</div>
+                        </div>
+                        <div class="spacing-value">3rem (common)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Horizontal Margin (mx-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mx-auto</div>
+                        <div class="margin-preview" style="display: flex; justify-content: center;">
+                            <div class="margin-preview-inner" style="width: 60%; height: 60%;">auto</div>
+                        </div>
+                        <div class="spacing-value">Center (very common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mx-0 - 0px</div>
+                        <div class="margin-preview" style="padding-left: 0; padding-right: 0;">
+                            <div class="margin-preview-inner" style="width: 100%; height: 60%;">0px</div>
+                        </div>
+                        <div class="spacing-value">0rem (common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">mx-4 - 16px</div>
+                        <div class="margin-preview" style="padding-left: 16px; padding-right: 16px;">
+                            <div class="margin-preview-inner" style="width: calc(100% - 32px); height: 60%;">16px</div>
+                        </div>
+                        <div class="spacing-value">1rem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gap -->
+        <div class="section">
+            <h2 class="section-title">Gap Values <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Gap (gap-*)</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-0 - 0px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 0;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">0rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-1 - 4px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 4px;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">0.25rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-2 - 8px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 8px;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">0.5rem (very common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-3 - 12px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 12px;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">0.75rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-4 - 16px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 16px;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">1rem (very common)</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-6 - 24px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 24px;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">1.5rem</div>
+                    </div>
+                    <div class="spacing-sample">
+                        <div class="spacing-label">gap-8 - 32px</div>
+                        <div class="gap-preview">
+                            <div class="gap-preview-container" style="gap: 32px;">
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">1</div>
+                                <div class="gap-preview-item" style="width: 40px; height: 40px;">2</div>
+                            </div>
+                        </div>
+                        <div class="spacing-value">2rem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Patterns -->
+        <div class="section">
+            <h2 class="section-title">Responsive Spacing Patterns <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Main Content Padding</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">px-4 sm:px-6 md:px-12 lg:px-16</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: calc(100% - 32px); height: 100%; padding: 0 16px;">16px</div>
+                        </div>
+                        <div class="spacing-value">Mobile: 16px → sm: 24px → md: 48px → lg: 64px</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Main Content Vertical</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">py-4 md:py-12</div>
+                        <div class="padding-preview">
+                            <div class="padding-preview-inner" style="width: 100%; height: calc(100% - 32px); padding: 16px 0;">16px</div>
+                        </div>
+                        <div class="spacing-value">Mobile: 16px → md: 48px</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacing-group">
+                <div class="spacing-group-header">
+                    <span class="spacing-group-name">Sidebar Offset</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="spacing-samples">
+                    <div class="spacing-sample">
+                        <div class="spacing-label">ml-0 md:ml-16</div>
+                        <div class="margin-preview" style="padding-left: 0;">
+                            <div class="margin-preview-inner" style="width: 80%; height: 60%;">0px</div>
+                        </div>
+                        <div class="spacing-value">Mobile: 0px → md: 64px</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple interaction if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Spacings showcase loaded');
+        });
+    </script>
+</body>
+</html>

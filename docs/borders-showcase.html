@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borders & Border Radius Showcase - Design Systems Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.4;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .border-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+            cursor: pointer;
+        }
+
+        .border-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .border-preview {
+            width: 100%;
+            padding: 2rem;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .border-preview-box {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid #5c5c5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111827;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .border-info {
+            padding: 0.75rem;
+            background: white;
+        }
+
+        .border-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .border-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .border-detail {
+            font-size: 0.6875rem;
+            color: #4b5563;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
+        }
+
+        .border-detail-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .copy-button {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: #374151;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .copy-button:hover {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+
+        .radius-group {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .radius-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .radius-group-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .radius-group-info {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .radius-samples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .radius-sample {
+            flex: 1;
+            min-width: 180px;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .radius-label {
+            font-size: 0.625rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+
+        .radius-preview {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid #5c5c5c;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radius-value {
+            font-size: 0.625rem;
+            color: #4b5563;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+
+        .border-color-group {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .border-color-samples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .border-color-sample {
+            flex: 1;
+            min-width: 180px;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .border-color-preview {
+            width: 100%;
+            height: auto;
+            background: transparent;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .border-color-box {
+            width: 120px;
+            height: 120px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .badge-shadcn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-tailwind {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-custom {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: #111827;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Borders & Border Radius Showcase</h1>
+            <p class="subtitle">Complete visual reference of all border styles and border-radius values</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Border CSS Variables</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Border Radius Variables</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Radius Sizes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Border Colors</div>
+            </div>
+        </div>
+
+        <!-- Border Radius CSS Variables -->
+        <div class="section">
+            <h2 class="section-title">Border Radius CSS Variables <span class="badge badge-shadcn">shadcn/ui</span></h2>
+            <div class="grid">
+                <div class="border-card" data-copy="border-radius: var(--radius);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 8px; border: 1px solid #5c5c5c;">Base</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius (Base)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 8px</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Buttons, tooltips, containers</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-radius: var(--radius-sm);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 4px; border: 1px solid #5c5c5c;">Small</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius-sm (Small)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 4px (calc: 8px - 4px)</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Small elements</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-radius: var(--radius-md);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 6px; border: 1px solid #5c5c5c;">Medium</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius-md (Medium)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 6px (calc: 8px - 2px)</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Medium elements</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-radius: var(--radius-lg);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 8px; border: 1px solid #5c5c5c;">Large</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius-lg (Large)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 8px (same as base)</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Large elements</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-radius: var(--radius-xl);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 12px; border: 1px solid #5c5c5c;">Extra Large</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius-xl (Extra Large)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 12px (same as card)</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Extra large elements</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-radius: var(--radius-card);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 12px; border: 1px solid #5c5c5c;">Card</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius-card</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 12px</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Cards and larger containers</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-radius: var(--radius-button);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border-radius: 9999px; border: 1px solid #5c5c5c;">Pill</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--radius-button (Pill)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Value:</span> 9999px (fully rounded)</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Pill-shaped buttons</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tailwind Border Radius -->
+        <div class="section">
+            <h2 class="section-title">Tailwind Border Radius Classes <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="radius-group">
+                <div class="radius-group-header">
+                    <span class="radius-group-name">Standard Sizes</span>
+                    <span class="badge badge-tailwind">Tailwind CSS</span>
+                </div>
+                <div class="radius-samples">
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-none - 0px</div>
+                        <div class="radius-preview" style="border-radius: 0px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">No rounding</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-sm - 2px</div>
+                        <div class="radius-preview" style="border-radius: 2px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">0.125rem</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded - 4px</div>
+                        <div class="radius-preview" style="border-radius: 4px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">0.25rem</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-md - 6px</div>
+                        <div class="radius-preview" style="border-radius: 6px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">0.375rem</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-lg - 8px</div>
+                        <div class="radius-preview" style="border-radius: 8px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">0.5rem (most common)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-xl - 12px</div>
+                        <div class="radius-preview" style="border-radius: 12px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">0.75rem (cards)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-2xl - 16px</div>
+                        <div class="radius-preview" style="border-radius: 16px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">1rem</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-3xl - 24px</div>
+                        <div class="radius-preview" style="border-radius: 24px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">1.5rem</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">rounded-full - 9999px</div>
+                        <div class="radius-preview" style="border-radius: 9999px; border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">Pills & circles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Border Colors -->
+        <div class="section">
+            <h2 class="section-title">Border Colors <span class="badge badge-shadcn">shadcn/ui</span> & <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="grid">
+                <div class="border-card" data-copy="border-color: var(--border);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border: 3px solid #5c5c5c; border-radius: 8px;">Default</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--border (Default)</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Color:</span> rgba(92, 92, 92, 1)</div>
+                            <div class="border-detail"><span class="border-detail-label">Hex:</span> #5c5c5c</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Default borders</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+
+                <div class="border-card" data-copy="border-color: var(--sidebar-border);">
+                    <div class="border-preview">
+                        <div class="border-preview-box" style="border: 3px solid #c9c9c9; border-radius: 8px;">Sidebar</div>
+                    </div>
+                    <div class="border-info">
+                        <div class="border-name">--sidebar-border</div>
+                        <div class="border-details">
+                            <div class="border-detail"><span class="border-detail-label">Color:</span> rgba(201, 201, 201, 1)</div>
+                            <div class="border-detail"><span class="border-detail-label">Hex:</span> #c9c9c9</div>
+                            <div class="border-detail"><span class="border-detail-label">Usage:</span> Sidebar borders</div>
+                            <div class="border-detail"><span class="border-detail-label">Origin:</span> 📦 shadcn/ui</div>
+                        </div>
+                        <button class="copy-button" onclick="copyToClipboard(this)">Copy CSS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tailwind Border Colors -->
+        <div class="section">
+            <h2 class="section-title">Tailwind Border Colors <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="border-color-group">
+                <div class="border-color-samples">
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-gray-200</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #e5e7eb; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#e5e7eb (most common)</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-gray-200/50</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid rgba(229, 231, 235, 0.5); border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">50% opacity</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-blue-200</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #bfdbfe; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#bfdbfe</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-blue-600</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #2563eb; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#2563eb (active states)</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-purple-200</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #e9d5ff; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#e9d5ff</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-green-200</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #bbf7d0; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#bbf7d0</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-red-200</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #fecaca; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#fecaca</div>
+                    </div>
+                    <div class="border-color-sample">
+                        <div class="radius-label">border-yellow-200</div>
+                        <div class="border-color-preview">
+                            <div class="border-color-box" style="border: 1px solid #fde68a; border-radius: 8px;"></div>
+                        </div>
+                        <div class="radius-value">#fde68a</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Border Widths -->
+        <div class="section">
+            <h2 class="section-title">Border Widths <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="radius-group">
+                <div class="radius-samples">
+                    <div class="radius-sample">
+                        <div class="radius-label">border-0 - 0px</div>
+                        <div class="radius-preview" style="border: 0px solid #5c5c5c;"></div>
+                        <div class="radius-value">No border</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border - 1px</div>
+                        <div class="radius-preview" style="border: 1px solid #5c5c5c;"></div>
+                        <div class="radius-value">Default (most common)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-2 - 2px</div>
+                        <div class="radius-preview" style="border: 2px solid #5c5c5c;"></div>
+                        <div class="radius-value">Thick (tabs, active)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-4 - 4px</div>
+                        <div class="radius-preview" style="border: 4px solid #5c5c5c;"></div>
+                        <div class="radius-value">Very thick (rare)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Border Styles -->
+        <div class="section">
+            <h2 class="section-title">Border Styles <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="radius-group">
+                <div class="radius-samples">
+                    <div class="radius-sample">
+                        <div class="radius-label">border-solid</div>
+                        <div class="radius-preview" style="border: 3px solid #5c5c5c;"></div>
+                        <div class="radius-value">Solid (default)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-dashed</div>
+                        <div class="radius-preview" style="border: 3px dashed #5c5c5c;"></div>
+                        <div class="radius-value">Dashed (dividers)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-dotted</div>
+                        <div class="radius-preview" style="border: 3px dotted #5c5c5c;"></div>
+                        <div class="radius-value">Dotted (rare)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Border Positions -->
+        <div class="section">
+            <h2 class="section-title">Border Positions <span class="badge badge-tailwind">Tailwind CSS</span></h2>
+            <div class="radius-group">
+                <div class="radius-samples">
+                    <div class="radius-sample">
+                        <div class="radius-label">border-t (Top)</div>
+                        <div class="radius-preview" style="border-top: 3px solid #5c5c5c;"></div>
+                        <div class="radius-value">Top border only</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-b (Bottom)</div>
+                        <div class="radius-preview" style="border-bottom: 3px solid #5c5c5c;"></div>
+                        <div class="radius-value">Bottom border (most common)</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-l (Left)</div>
+                        <div class="radius-preview" style="border-left: 3px solid #5c5c5c;"></div>
+                        <div class="radius-value">Left border</div>
+                    </div>
+                    <div class="radius-sample">
+                        <div class="radius-label">border-r (Right)</div>
+                        <div class="radius-preview" style="border-right: 3px solid #5c5c5c;"></div>
+                        <div class="radius-value">Right border (sidebars)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+        function copyToClipboard(button) {
+            const card = button.closest('.border-card');
+            const css = card.getAttribute('data-copy');
+            
+            navigator.clipboard.writeText(css).then(() => {
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
