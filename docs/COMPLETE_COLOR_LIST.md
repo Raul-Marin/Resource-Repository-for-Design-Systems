@@ -1,0 +1,417 @@
+# 🎨 Complete Color List of the Project
+
+## 📋 Index
+
+1. [Custom Variables (theme.css)](#1-custom-variables-themecss)
+2. [Standard Tailwind CSS v4 Colors](#2-standard-tailwind-css-v4-colors)
+3. [Inline Colors in CSS Files](#3-inline-colors-in-css-files)
+4. [Inline Colors in Components](#4-inline-colors-in-components)
+5. [Tailwind Classes Used in Components](#5-tailwind-classes-used-in-components)
+6. [MachineView Colors (Machine Version)](#6-machineview-colors-machine-version)
+
+---
+
+## 1. Custom Variables (`theme.css`)
+
+**Location:** `src/styles/theme.css`  
+**Format:** RGB (custom values)  
+**Mapping:** Mapped to Tailwind using `@theme inline` (lines 92-132)
+
+### 🎯 Design System Colors
+
+#### Backgrounds and Surfaces
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--background` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Main application background |
+| `--card` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Card, modal backgrounds |
+| `--popover` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Dropdown, tooltip backgrounds |
+| `--input` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Input backgrounds |
+| `--input-background` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Input field backgrounds |
+| `--sidebar` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Sidebar background |
+
+#### Texts and Foregrounds
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--foreground` | `rgba(46, 46, 46, 1)` | `#2e2e2e` | ❌ Custom | Main text color |
+| `--card-foreground` | `rgba(46, 46, 46, 1)` | `#2e2e2e` | ❌ Custom | Text on cards |
+| `--popover-foreground` | `rgba(46, 46, 46, 1)` | `#2e2e2e` | ❌ Custom | Text on dropdowns |
+| `--sidebar-foreground` | `rgba(46, 46, 46, 1)` | `#2e2e2e` | ❌ Custom | Text on sidebar |
+
+#### Primary and Action Colors
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--primary` | `rgba(6, 106, 254, 1)` | `#066afe` | ❌ Custom | Primary buttons, main links |
+| `--primary-foreground` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Text on primary elements |
+| `--accent` | `rgba(2, 80, 217, 1)` | `#0250d9` | ❌ Custom | Highlights, active states |
+| `--accent-foreground` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Text on accent elements |
+| `--secondary` | `rgba(0, 0, 0, 0)` | `transparent` | ✅ Standard | Secondary buttons (transparent) |
+| `--secondary-foreground` | `rgba(2, 80, 217, 1)` | `#0250d9` | ❌ Custom | Secondary button text |
+
+#### Destructive Colors
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--destructive` | `rgba(0, 0, 0, 0)` | `transparent` | ✅ Standard | Destructive action backgrounds |
+| `--destructive-foreground` | `rgba(182, 5, 84, 1)` | `#b60554` | ❌ Custom | Error messages, delete actions |
+
+#### Muted and Secondary Colors
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--muted` | `rgba(201, 201, 201, 1)` | `#c9c9c9` | ❌ Custom | Disabled elements |
+| `--muted-foreground` | `rgba(147, 147, 147, 1)` | `#939393` | ❌ Custom | Secondary text |
+
+#### Borders and Rings
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--border` | `rgba(92, 92, 92, 1)` | `#5c5c5c` | ❌ Custom | Default borders |
+| `--ring` | `rgba(0, 30, 91, 1)` | `#001e5b` | ❌ Custom | Focus rings |
+| `--sidebar-border` | `rgba(201, 201, 201, 1)` | `#c9c9c9` | ❌ Custom | Sidebar borders |
+| `--sidebar-ring` | `rgba(0, 30, 91, 1)` | `#001e5b` | ❌ Custom | Sidebar focus rings |
+
+#### Chart Colors
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--chart-1` | `rgba(2, 80, 217, 1)` | `#0250d9` | ❌ Custom | Chart color 1 |
+| `--chart-2` | `rgba(26, 185, 255, 1)` | `#1ab9ff` | ❌ Custom | Chart color 2 (cyan) |
+| `--chart-3` | `rgba(150, 2, 199, 1)` | `#9602c7` | ❌ Custom | Chart color 3 (purple) |
+| `--chart-4` | `rgba(11, 130, 124, 1)` | `#0b827c` | ❌ Custom | Chart color 4 (teal) |
+| `--chart-5` | `rgba(238, 176, 16, 1)` | `#eeb010` | ❌ Custom | Chart color 5 (yellow) |
+
+#### Sidebar Colors
+| Variable | RGB Value | Hex | Origin | Usage |
+|----------|-----------|-----|--------|-----|
+| `--sidebar-primary` | `rgba(6, 106, 254, 1)` | `#066afe` | ❌ Custom | Primary buttons in sidebar |
+| `--sidebar-primary-foreground` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Text on primary in sidebar |
+| `--sidebar-accent` | `rgba(2, 80, 217, 1)` | `#0250d9` | ❌ Custom | Accent in sidebar |
+| `--sidebar-accent-foreground` | `rgba(255, 255, 255, 1)` | `#ffffff` | ✅ Standard (white) | Text on accent in sidebar |
+
+---
+
+## 2. Standard Tailwind CSS v4 Colors
+
+**Location:** Automatically generated by Tailwind CSS v4.1.12  
+**Format:** OKLCH (native Tailwind v4 format)  
+**Availability:** ALL colors from Tailwind's standard palette
+
+### 🎨 Available Colors (Examples of most used)
+
+#### Blues
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `blue-50` | `oklch(97% .014 254.604)` | `rgb(239, 246, 255)` | `#eff6ff` | Gradients, soft backgrounds |
+| `blue-100` | `oklch(93.2% .032 255.585)` | `rgb(219, 234, 254)` | `#dbeafe` | Gradients, effects |
+| `blue-200` | `oklch(88.2% .059 254.128)` | `rgb(191, 219, 254)` | `#bfdbfe` | Borders, backgrounds |
+| `blue-300` | `oklch(80.9% .105 251.813)` | `rgb(147, 197, 253)` | `#93c5fd` | Effects, gradients |
+| `blue-400` | `oklch(70.7% .165 254.624)` | `rgb(96, 165, 250)` | `#60a5fa` | ✅ Used in gradients |
+| `blue-500` | `oklch(62.3% .214 259.815)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ Used in effects, animations |
+| `blue-600` | `oklch(54.6% .245 262.881)` | `rgb(37, 99, 235)` | `#2563eb` | Texts, states |
+| `blue-700` | `oklch(48.8% .243 264.376)` | `rgb(29, 78, 216)` | `#1d4ed8` | Dark texts |
+
+#### Purples
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `purple-50` | `oklch(97.7% .014 308.299)` | `rgb(250, 245, 255)` | `#faf5ff` | ✅ Gradients, backgrounds |
+| `purple-100` | `oklch(94.6% .033 307.174)` | `rgb(243, 232, 255)` | `#f3e8ff` | ✅ Gradients, effects |
+| `purple-200` | `oklch(90.2% .063 306.703)` | `rgb(233, 213, 255)` | `#e9d5ff` | ✅ Borders, backgrounds |
+| `purple-300` | `oklch(82.7% .119 306.383)` | `rgb(216, 180, 254)` | `#d8b4fe` | Hover borders |
+| `purple-400` | `oklch(71.4% .203 305.504)` | `rgb(192, 132, 252)` | `#c084fc` | Effects |
+| `purple-500` | `oklch(62.7% .265 303.9)` | `rgb(168, 85, 247)` | `#a855f7` | ✅ Used in gradients, animations |
+| `purple-600` | `oklch(55.8% .288 302.321)` | `rgb(147, 51, 234)` | `#9333ea` | ✅ Used in grid, effects |
+| `purple-700` | `oklch(49.6% .265 301.924)` | `rgb(126, 34, 206)` | `#7e22ce` | Texts, states |
+
+#### Pinks
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `pink-50` | `oklch(97.1% .014 343.198)` | `rgb(253, 242, 248)` | `#fdf2f8` | ✅ Gradients, backgrounds |
+| `pink-100` | `oklch(94.8% .028 342.258)` | `rgb(252, 231, 243)` | `#fce7f3` | ✅ Gradients, effects |
+| `pink-200` | `oklch(89.9% .061 343.231)` | `rgb(251, 207, 232)` | `#fbcfe8` | Borders, backgrounds |
+| `pink-400` | `oklch(71.8% .202 349.761)` | `rgb(244, 114, 182)` | `#f472b6` | ✅ Used in effects, animations |
+| `pink-500` | `oklch(65.6% .241 354.308)` | `rgb(236, 72, 153)` | `#ec4899` | ✅ Used in animations, effects |
+| `pink-600` | `oklch(59.2% .249 .584)` | `rgb(219, 39, 119)` | `#db2777` | States, texts |
+| `pink-700` | `oklch(52.5% .223 3.958)` | `rgb(190, 24, 93)` | `#be185d` | Dark texts |
+
+#### Violets
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `violet-100` | `oklch(94.3% .029 294.588)` | `rgb(237, 233, 254)` | `#ede9fe` | Gradients |
+| `violet-200` | `oklch(89.4% .057 293.283)` | `rgb(221, 214, 254)` | `#ddd6fe` | Borders |
+| `violet-400` | `oklch(70.2% .183 293.541)` | `rgb(167, 139, 250)` | `#a78bfa` | ✅ Used in effects (FluidShader) |
+| `violet-500` | `oklch(60.6% .25 292.717)` | `rgb(139, 92, 246)` | `#8b5cf6` | ✅ Used in effects, animations |
+
+#### Indigos
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `indigo-100` | `oklch(93% .034 272.788)` | `rgb(224, 231, 255)` | `#e0e7ff` | ✅ Used in FluidShader |
+
+#### Grays/Slate
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `gray-50` | `oklch(98.5% .002 247.839)` | `rgb(249, 250, 251)` | `#f9fafb` | Soft backgrounds |
+| `gray-100` | `oklch(96.7% .003 264.542)` | `rgb(243, 244, 246)` | `#f3f4f6` | Backgrounds, hover |
+| `gray-200` | `oklch(92.8% .006 264.531)` | `rgb(229, 231, 235)` | `#e5e7eb` | ✅ Borders, backgrounds |
+| `gray-300` | `oklch(87.2% .01 258.338)` | `rgb(209, 213, 219)` | `#d1d5db` | Borders, states |
+| `gray-400` | `oklch(70.7% .022 261.325)` | `rgb(156, 163, 175)` | `#9ca3af` | Secondary texts |
+| `gray-500` | `oklch(55.1% .027 264.364)` | `rgb(107, 114, 128)` | `#6b7280` | Secondary texts |
+| `gray-600` | `oklch(44.6% .03 256.802)` | `rgb(75, 85, 99)` | `#4b5563` | Texts |
+| `gray-700` | `oklch(37.3% .034 259.733)` | `rgb(55, 65, 81)` | `#374151` | Dark texts |
+| `gray-900` | `oklch(21% .034 264.665)` | `rgb(17, 24, 39)` | `#111827` | ✅ Very dark texts |
+
+#### Slate (used in DotGrid and retro-bg)
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `slate-300` | `oklch(87.2% .01 258.338)` | `rgb(203, 213, 225)` | `#cbd5e1` | ✅ Stars (retro-bg) |
+| `slate-400` | `oklch(70.7% .022 261.325)` | `rgb(148, 163, 184)` | `#94a3b8` | ✅ Buildings (retro-bg) |
+| `slate-500` | `oklch(55.1% .027 264.364)` | `rgb(100, 116, 139)` | `#64748b` | ✅ Dot grid (DotGrid) |
+
+#### Oranges/Amber (used in retro-bg)
+| Tailwind Class | OKLCH Value | RGB Equivalent | Hex | Usage in Project |
+|----------------|-------------|-----------------|-----|-----------------|
+| `amber-300` | `oklch(87.9% .169 91.605)` | `rgb(253, 224, 71)` | `#fde047` | ✅ Sun (retro-bg) |
+| `orange-400` | `oklch(75% .183 55.934)` | `rgb(251, 146, 60)` | `#fb923c` | ✅ Sun (retro-bg) |
+
+**Note:** Tailwind v4 includes ALL colors from its standard palette (red, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose, slate, gray, zinc, neutral, stone) with all their variants (50-950).
+
+---
+
+## 3. Inline Colors in CSS Files
+
+### 📁 `src/styles/index.css`
+
+#### Animations and Effects
+| Color | RGB Value | Hex | Tailwind Origin | Usage |
+|-------|-----------|-----|-----------------|-----|
+| `rgba(139, 92, 246, 0.2)` | `rgb(139, 92, 246)` | `#8b5cf6` | ✅ `violet-500` | Glow effect |
+| `rgba(59, 130, 246, 0.15)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | Glow effect |
+| `rgba(168, 85, 247, 0.5)` | `rgb(168, 85, 247)` | `#a855f7` | ✅ `purple-500` | Glitch animation |
+| `rgba(59, 130, 246, 0.7)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | Glitch animation |
+| `rgba(236, 72, 153, 0.7)` | `rgb(236, 72, 153)` | `#ec4899` | ✅ `pink-500` | Glitch animation |
+| `rgba(124, 58, 237, 0.7)` | `rgb(124, 58, 237)` | `#7c3aed` | ✅ `violet-600` | Glitch animation |
+| `rgba(168, 85, 247, 0.1)` | `rgb(168, 85, 247)` | `#a855f7` | ✅ `purple-500` | contribution-purple animation |
+| `rgba(168, 85, 247, 0.3)` | `rgb(168, 85, 247)` | `#a855f7` | ✅ `purple-500` | contribution-purple animation |
+| `rgba(168, 85, 247, 0.6)` | `rgb(168, 85, 247)` | `#a855f7` | ✅ `purple-500` | contribution-purple animation |
+| `rgba(236, 72, 153, 0.1)` | `rgb(236, 72, 153)` | `#ec4899` | ✅ `pink-500` | contribution-pink animation |
+| `rgba(236, 72, 153, 0.4)` | `rgb(236, 72, 153)` | `#ec4899` | ✅ `pink-500` | contribution-pink animation |
+| `rgba(236, 72, 153, 0.6)` | `rgb(236, 72, 153)` | `#ec4899` | ✅ `pink-500` | contribution-pink animation |
+| `rgba(59, 130, 246, 0.1)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | contribution-blue animation |
+| `rgba(59, 130, 246, 0.3)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | contribution-blue animation |
+| `rgba(59, 130, 246, 0.5)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | contribution-blue animation |
+| `rgba(168, 85, 247, 0.8)` | `rgb(168, 85, 247)` | `#a855f7` | ✅ `purple-500` | cyber-pulse animation |
+| `rgba(59, 130, 246, 0.6)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | cyber-pulse animation |
+
+### 📁 `src/styles/retro-bg.css`
+
+#### Retro Background (Synthwave)
+| Color | RGB Value | Hex | Tailwind Origin | Usage |
+|-------|-----------|-----|-----------------|-----|
+| `rgba(239, 246, 255, 0.4)` | `rgb(239, 246, 255)` | `#eff6ff` | ✅ `blue-50` | Sky gradient |
+| `rgba(243, 232, 255, 0.35)` | `rgb(243, 232, 255)` | `#f3e8ff` | ✅ `purple-100` | Sky gradient |
+| `rgba(254, 243, 250, 0.3)` | `rgb(254, 243, 250)` | `#fef3fa` | ✅ `pink-50` | Sky gradient |
+| `rgba(203, 213, 225, 0.6)` | `rgb(203, 213, 225)` | `#cbd5e1` | ✅ `slate-300` | Stars |
+| `rgba(253, 224, 71, 0.6)` | `rgb(253, 224, 71)` | `#fde047` | ✅ `amber-300` | Sun (gradient) |
+| `rgba(251, 146, 60, 0.5)` | `rgb(251, 146, 60)` | `#fb923c` | ✅ `orange-400` | Sun (gradient) |
+| `rgba(244, 114, 182, 0.4)` | `rgb(244, 114, 182)` | `#f472b6` | ✅ `pink-400` | Sun (gradient) |
+| `rgba(251, 146, 60, 0.2)` | `rgb(251, 146, 60)` | `#fb923c` | ✅ `orange-400` | Sun shadow |
+| `rgba(244, 114, 182, 0.15)` | `rgb(244, 114, 182)` | `#f472b6` | ✅ `pink-400` | Sun shadow |
+| `rgba(191, 219, 254, 0.5)` | `rgb(191, 219, 254)` | `#bfdbfe` | ✅ `blue-200` | Mountains (gradient) |
+| `rgba(147, 197, 253, 0.4)` | `rgb(147, 197, 253)` | `#93c5fd` | ✅ `blue-300` | Mountains (gradient) |
+| `rgba(125, 180, 240, 0.3)` | `rgb(125, 180, 240)` | `#7db4f0` | ❌ Custom | Mountains (gradient) |
+| `rgba(148, 163, 184, 0)` | `rgb(148, 163, 184)` | `#94a3b8` | ✅ `slate-400` | Buildings (gradient start) |
+| `rgba(148, 163, 184, 0.35)` | `rgb(148, 163, 184)` | `#94a3b8` | ✅ `slate-400` | Buildings (gradient middle) |
+| `rgba(148, 163, 184, 0.5)` | `rgb(148, 163, 184)` | `#94a3b8` | ✅ `slate-400` | Buildings (gradient end) |
+| `rgba(125, 140, 165, 0)` | `rgb(125, 140, 165)` | `#7d8ca5` | ❌ Custom | Alternate buildings (gradient start) |
+| `rgba(125, 140, 165, 0.4)` | `rgb(125, 140, 165)` | `#7d8ca5` | ❌ Custom | Alternate buildings (gradient middle) |
+| `rgba(125, 140, 165, 0.55)` | `rgb(125, 140, 165)` | `#7d8ca5` | ❌ Custom | Alternate buildings (gradient end) |
+| `rgba(147, 51, 234, 0.25)` | `rgb(147, 51, 234)` | `#9333ea` | ✅ `purple-600` | Ground border |
+| `rgba(147, 51, 234, 0.08)` | `rgb(147, 51, 234)` | `#9333ea` | ✅ `purple-600` | Ground shadow |
+| `rgba(147, 51, 234, 0.35)` | `rgb(147, 51, 234)` | `#9333ea` | ✅ `purple-600` | Grid lines |
+| `rgba(240, 237, 232, 0.95)` | `rgb(240, 237, 232)` | `#f0ede8` | ❌ Custom | Grid fade (start) |
+| `rgba(240, 237, 232, 0.6)` | `rgb(240, 237, 232)` | `#f0ede8` | ❌ Custom | Grid fade (middle) |
+| `rgba(240, 237, 232, 0.2)` | `rgb(240, 237, 232)` | `#f0ede8` | ❌ Custom | Grid fade (end) |
+
+### 📁 `src/styles/clouds.css`
+
+#### Clouds
+| Color | RGB Value | Hex | Tailwind Origin | Usage |
+|-------|-----------|-----|-----------------|-----|
+| `#ffffff` | `rgb(255, 255, 255)` | `#ffffff` | ✅ `white` | Cloud color |
+| `rgba(59, 130, 246, 0.08)` | `rgb(59, 130, 246)` | `#3b82f6` | ✅ `blue-500` | Cloud shadow |
+
+---
+
+## 4. Inline Colors in Components
+
+### 📁 `src/app/components/FluidShader.tsx`
+
+| Color | RGB Value | Hex | Tailwind Origin | Usage |
+|-------|-----------|-----|-----------------|-----|
+| `rgba(219, 234, 254, 0.4)` | `rgb(219, 234, 254)` | `#dbeafe` | ✅ `blue-100` | Main gradient |
+| `rgba(224, 231, 255, 0.3)` | `rgb(224, 231, 255)` | `#e0e7ff` | ✅ `indigo-100` | Main gradient |
+| `rgba(243, 232, 255, 0.4)` | `rgb(243, 232, 255)` | `#f3e8ff` | ✅ `purple-100` | Main gradient |
+| `rgba(252, 231, 243, 0.3)` | `rgb(252, 231, 243)` | `#fce7f3` | ✅ `pink-100` | Main gradient |
+| `rgba(167, 139, 250, 0.15)` | `rgb(167, 139, 250)` | `#a78bfa` | ✅ `violet-400` | Orbs (effects) |
+| `rgba(96, 165, 250, 0.15)` | `rgb(96, 165, 250)` | `#60a5fa` | ✅ `blue-400` | Orbs (effects) |
+| `rgba(244, 114, 182, 0.12)` | `rgb(244, 114, 182)` | `#f472b6` | ✅ `pink-400` | Orbs (effects) |
+| `#ffffff` | `rgb(255, 255, 255)` | `#ffffff` | ✅ `white` | Canvas background |
+
+### 📁 `src/app/components/DotGrid.tsx`
+
+| Color | RGB Value | Hex | Tailwind Origin | Usage |
+|-------|-----------|-----|-----------------|-----|
+| `#334155` | `rgb(51, 65, 85)` | `#334155` | ✅ `slate-700` | Grid dots |
+
+---
+
+## 5. Tailwind Classes Used in Components
+
+### 🎨 Most Used Color Classes
+
+#### Backgrounds
+- `bg-white` - White background
+- `bg-blue-50`, `bg-purple-50`, `bg-pink-50` - Soft backgrounds
+- `bg-gray-50`, `bg-gray-100` - Soft gray backgrounds
+- `bg-gradient-to-r`, `bg-gradient-to-br` - Gradients
+- `from-blue-50`, `to-purple-50`, `via-pink-50` - Gradient directions
+
+#### Texts
+- `text-gray-900`, `text-gray-600`, `text-gray-500` - Gray texts
+- `text-purple-700`, `text-blue-600` - Colored texts
+- `text-white` - White text
+
+#### Borders
+- `border-gray-200`, `border-gray-200/50` - Gray borders
+- `border-purple-200/50`, `border-blue-200/50` - Colored borders with opacity
+
+**Usage location:** Components in `src/app/components/*.tsx`
+
+---
+
+## 6. MachineView Colors (Machine Version)
+
+**Location:** `src/app/components/MachineView.tsx` and related styles  
+**Purpose:** Special "Machine Mode" view with retro/synthwave aesthetic to display content in markdown format
+
+### 📁 `src/app/components/MachineView.tsx`
+
+#### Main Container
+| Color | RGB Value/Class | Hex | Tailwind Origin | Usage |
+|-------|-----------------|-----|-----------------|-----|
+| `border-white` | `rgb(255, 255, 255)` | `#ffffff` | ✅ `white` | Main container border |
+| `text-white` | `rgb(255, 255, 255)` | `#ffffff` | ✅ `white` | Markdown content text |
+
+#### Copy Button
+| Color | RGB Value/Class | Hex | Tailwind Origin | Usage |
+|-------|-----------------|-----|-----------------|-----|
+| `hover:bg-white/10` | `rgba(255, 255, 255, 0.1)` | `#ffffff` (10% opacity) | ✅ `white` with opacity | Copy button hover background |
+| `text-white/60` | `rgba(255, 255, 255, 0.6)` | `#ffffff` (60% opacity) | ✅ `white` with opacity | Copy icon (normal state) |
+| `group-hover:text-white` | `rgb(255, 255, 255)` | `#ffffff` | ✅ `white` | Copy icon (hover state) |
+| `text-green-400` | `rgb(74, 222, 128)` | `#4ade80` | ✅ `green-400` | Check icon when copy succeeds |
+
+### 📁 `src/app/App.tsx` (Machine Mode)
+
+#### Global Styles in Machine Mode
+| Color | RGB Value/Class | Hex | Tailwind Origin | Usage |
+|-------|-----------------|-----|-----------------|-----|
+| `text-white` | `rgb(255, 255, 255)` | `#ffffff` | ✅ `white` | Main text in machine mode |
+| `font-mono` | - | - | ✅ Tailwind utility | Monospace font for content |
+
+### 📁 `src/app/components/FloatingToolbar.tsx` (Machine Button)
+
+#### Machine Button States
+| Color | RGB Value/Class | Hex | Tailwind Origin | Usage |
+|-------|-----------------|-----|-----------------|-----|
+| `text-green-600` | `rgb(22, 163, 74)` | `#16a34a` | ✅ `green-600` | Icon and text when machine mode is active |
+| `text-gray-400` | `rgb(156, 163, 175)` | `#9ca3af` | ✅ `gray-400` | Icon when machine mode is inactive |
+| `text-gray-500` | `rgb(107, 114, 128)` | `#6b7280` | ✅ `gray-500` | Button text when machine mode is inactive |
+
+### 📁 Dot Grid in Machine Mode
+
+**Location:** `src/app/components/DotGrid.tsx` (machine mode)  
+**Note:** The dot grid changes color based on mode (human vs machine)
+
+| Color | RGB Value | Hex | Tailwind Origin | Usage |
+|-------|-----------|-----|-----------------|-----|
+| `rgba(255, 255, 255, 0.15)` | `rgb(255, 255, 255)` | `#ffffff` (15% opacity) | ✅ `white` with opacity | Grid dots in machine mode (vs purple in human mode) |
+
+### 🎨 MachineView Color Palette
+
+**Visual Style:** Terminal/Retro/Synthwave
+- **Background:** Transparent (displayed over retro background)
+- **Text:** Pure white (`#ffffff`)
+- **Borders:** Pure white (`#ffffff`)
+- **Interactive states:** White with opacities (10%, 60%)
+- **Positive feedback:** Green (`green-400`, `green-600`)
+- **Inactive states:** Grays (`gray-400`, `gray-500`)
+
+### 📝 Technical Notes
+
+1. **Contrast:** Machine mode uses white text on dark/retro background to create a terminal effect
+2. **Typography:** Monospace font (`font-mono`) to simulate code/terminal
+3. **Interactivity:** Subtle hover states with low opacities to maintain minimalist aesthetic
+4. **Adaptive grid:** Dot grid changes color based on mode (purple in human, white in machine)
+
+---
+
+## 📊 Summary by Origin
+
+### ✅ Standard Tailwind CSS v4 Colors
+- **Total:** All colors from standard palette (22 families × multiple variants)
+- **Format:** OKLCH
+- **Location:** Automatically generated
+- **Usage:** Direct classes (`bg-blue-500`, `text-purple-700`, etc.)
+
+### 🎨 Custom Variables
+- **Total:** 25 custom CSS variables
+- **Format:** RGB
+- **Location:** `src/styles/theme.css` (lines 1-90)
+- **Mapping:** `src/styles/theme.css` (lines 92-132, `@theme inline`)
+- **Usage:** Variables (`bg-primary`, `text-foreground`, etc.)
+
+### 📝 Inline Colors in CSS
+- **Total:** ~40+ inline RGB values
+- **Format:** RGB with opacity
+- **Location:** 
+  - `src/styles/index.css` (animations)
+  - `src/styles/retro-bg.css` (retro background)
+  - `src/styles/clouds.css` (clouds)
+- **Origin:** Mostly Tailwind standard with custom opacities
+
+### 🔧 Inline Colors in Components
+- **Total:** ~10 inline RGB values
+- **Format:** RGB with opacity
+- **Location:** 
+  - `src/app/components/FluidShader.tsx`
+  - `src/app/components/DotGrid.tsx`
+- **Origin:** Mostly Tailwind standard with custom opacities
+
+### 🤖 MachineView Colors (Machine Version)
+- **Total:** ~10 color classes and values
+- **Format:** Tailwind classes and RGB with opacity
+- **Location:** 
+  - `src/app/components/MachineView.tsx`
+  - `src/app/App.tsx` (machine mode)
+  - `src/app/components/FloatingToolbar.tsx` (machine button)
+- **Origin:** Tailwind standard (white, green, gray)
+- **Style:** Terminal/Retro/Synthwave with white text on dark background
+
+---
+
+## 🎯 Conclusion
+
+The project uses a **hybrid color system**:
+
+1. **Custom variables** for the base design system (buttons, inputs, components)
+2. **Standard Tailwind v4 colors** for decorative elements (gradients, badges, effects)
+3. **Inline colors** in CSS and components for specific effects and animations
+4. **MachineView colors** for the special "Machine Mode" view with terminal/retro aesthetic
+
+All colors are organized and declared in the files mentioned above.
+
+---
+
+## 📑 Section Index
+
+1. [Custom Variables (theme.css)](#1-custom-variables-themecss)
+2. [Standard Tailwind CSS v4 Colors](#2-standard-tailwind-css-v4-colors)
+3. [Inline Colors in CSS Files](#3-inline-colors-in-css-files)
+4. [Inline Colors in Components](#4-inline-colors-in-components)
+5. [Tailwind Classes Used in Components](#5-tailwind-classes-used-in-components)
+6. [MachineView Colors (Machine Version)](#6-machineview-colors-machine-version)

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Only</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* Grid de puntos decorativo */
+        .dot-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background-image: radial-gradient(circle, rgba(147, 51, 234, 0.35) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Shader fluido animado */
+        .fluid-shader {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .fluid-shader canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0.5;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid de puntos -->
+    <div class="dot-grid"></div>
+
+    <!-- Shader fluido animado -->
+    <div class="fluid-shader">
+        <canvas id="fluidCanvas"></canvas>
+    </div>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('fluidCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            
+            // Set canvas size
+            const updateSize = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+            
+            updateSize();
+            window.addEventListener('resize', updateSize);
+            
+            let time = 0;
+            let animationId;
+            
+            const animate = () => {
+                time += 0.005;
+                
+                const width = canvas.width;
+                const height = canvas.height;
+                
+                // Create gradient that moves
+                const gradient = ctx.createLinearGradient(
+                    width * 0.5 + Math.cos(time * 0.5) * width * 0.3,
+                    height * 0.5 + Math.sin(time * 0.3) * height * 0.3,
+                    width * 0.5 + Math.cos(time * 0.5 + Math.PI) * width * 0.3,
+                    height * 0.5 + Math.sin(time * 0.3 + Math.PI) * height * 0.3
+                );
+                
+                // Soft AI colors
+                gradient.addColorStop(0, 'rgba(219, 234, 254, 0.4)');    // blue-100
+                gradient.addColorStop(0.25, 'rgba(224, 231, 255, 0.3)'); // indigo-100
+                gradient.addColorStop(0.5, 'rgba(243, 232, 255, 0.4)');  // purple-100
+                gradient.addColorStop(0.75, 'rgba(252, 231, 243, 0.3)'); // pink-100
+                gradient.addColorStop(1, 'rgba(219, 234, 254, 0.4)');    // blue-100
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, width, height);
+                
+                // Add some soft orbs
+                const orbs = [
+                    {
+                        x: width * 0.3 + Math.cos(time * 0.8) * width * 0.15,
+                        y: height * 0.4 + Math.sin(time * 0.6) * height * 0.15,
+                        radius: width * 0.15,
+                        color1: 'rgba(167, 139, 250, 0.15)', // violet-400
+                        color2: 'rgba(167, 139, 250, 0)'
+                    },
+                    {
+                        x: width * 0.7 + Math.cos(time * 0.6 + 2) * width * 0.15,
+                        y: height * 0.6 + Math.sin(time * 0.8 + 2) * height * 0.15,
+                        radius: width * 0.2,
+                        color1: 'rgba(96, 165, 250, 0.15)', // blue-400
+                        color2: 'rgba(96, 165, 250, 0)'
+                    },
+                    {
+                        x: width * 0.5 + Math.cos(time * 0.7 + 4) * width * 0.12,
+                        y: height * 0.3 + Math.sin(time * 0.5 + 4) * height * 0.12,
+                        radius: width * 0.18,
+                        color1: 'rgba(244, 114, 182, 0.12)', // pink-400
+                        color2: 'rgba(244, 114, 182, 0)'
+                    }
+                ];
+                
+                orbs.forEach(orb => {
+                    const orbGradient = ctx.createRadialGradient(
+                        orb.x, orb.y, 0,
+                        orb.x, orb.y, orb.radius
+                    );
+                    orbGradient.addColorStop(0, orb.color1);
+                    orbGradient.addColorStop(1, orb.color2);
+                    
+                    ctx.fillStyle = orbGradient;
+                    ctx.beginPath();
+                    ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                animationId = requestAnimationFrame(animate);
+            };
+            
+            animate();
+            
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                cancelAnimationFrame(animationId);
+            });
+        })();
+    </script>
+</body>
+</html>

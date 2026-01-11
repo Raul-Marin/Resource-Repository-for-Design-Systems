@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Swatches - Design Systems Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.4;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .color-ramp {
+            background: white;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .ramp-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .ramp-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #111827;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .ramp-info {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .swatches-ramp {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .swatch {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            width: 180px;
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+            cursor: pointer;
+        }
+
+        .swatch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .swatch-color {
+            width: 100%;
+            height: 80px;
+            position: relative;
+        }
+
+        .swatch-color.transparent {
+            background-image: 
+                linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+                linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+            background-size: 12px 12px;
+            background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+        }
+
+        .swatch-info {
+            padding: 0.75rem;
+            background: white;
+        }
+
+        .swatch-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .swatch-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .swatch-detail {
+            font-size: 0.6875rem;
+            color: #4b5563;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
+        }
+
+        .swatch-detail-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .swatch-button {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: #374151;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .swatch-button:hover {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.125rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .individual-swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .swatch {
+                width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Color Swatches</h1>
+            <p class="subtitle">Complete color palette - Design Systems Repository</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="total-colors">0</div>
+                <div class="stat-label">Total Colors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="standard-colors">0</div>
+                <div class="stat-label">Tailwind Standard</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="custom-colors">0</div>
+                <div class="stat-label">Custom Colors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="ramps-count">0</div>
+                <div class="stat-label">Color Ramps</div>
+            </div>
+        </div>
+
+        <div id="swatches-container"></div>
+    </div>
+
+    <script>
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+        const colors = [
+            // Custom Variables (theme.css) - with OKLCH approximations
+            { name: '--background', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Main application background', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--card', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Card, modal backgrounds', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--popover', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Dropdown, tooltip backgrounds', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--input', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Input backgrounds', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--input-background', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Input field backgrounds', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--sidebar', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Sidebar background', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--foreground', rgb: 'rgba(46, 46, 46, 1)', hex: '#2e2e2e', oklch: 'oklch(25.5% 0 0)', origin: 'Custom', usage: 'Main text color', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'gray-custom' },
+            { name: '--card-foreground', rgb: 'rgba(46, 46, 46, 1)', hex: '#2e2e2e', oklch: 'oklch(25.5% 0 0)', origin: 'Custom', usage: 'Text on cards', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'gray-custom' },
+            { name: '--popover-foreground', rgb: 'rgba(46, 46, 46, 1)', hex: '#2e2e2e', oklch: 'oklch(25.5% 0 0)', origin: 'Custom', usage: 'Text on dropdowns', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'gray-custom' },
+            { name: '--sidebar-foreground', rgb: 'rgba(46, 46, 46, 1)', hex: '#2e2e2e', oklch: 'oklch(25.5% 0 0)', origin: 'Custom', usage: 'Text on sidebar', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'gray-custom' },
+            { name: '--primary', rgb: 'rgba(6, 106, 254, 1)', hex: '#066afe', oklch: 'oklch(55.2% 0.218 260.5)', origin: 'Custom', usage: 'Primary buttons, main links', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'primary' },
+            { name: '--primary-foreground', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Text on primary elements', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--accent', rgb: 'rgba(2, 80, 217, 1)', hex: '#0250d9', oklch: 'oklch(45.8% 0.245 262.8)', origin: 'Custom', usage: 'Highlights, active states', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'accent' },
+            { name: '--accent-foreground', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Text on accent elements', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--secondary', rgb: 'rgba(0, 0, 0, 0)', hex: 'transparent', oklch: 'oklch(0% 0 0)', origin: 'Standard', usage: 'Secondary buttons (transparent)', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'transparent' },
+            { name: '--secondary-foreground', rgb: 'rgba(2, 80, 217, 1)', hex: '#0250d9', oklch: 'oklch(45.8% 0.245 262.8)', origin: 'Custom', usage: 'Secondary button text', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'accent' },
+            { name: '--destructive', rgb: 'rgba(0, 0, 0, 0)', hex: 'transparent', oklch: 'oklch(0% 0 0)', origin: 'Standard', usage: 'Destructive action backgrounds', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'transparent' },
+            { name: '--destructive-foreground', rgb: 'rgba(182, 5, 84, 1)', hex: '#b60554', oklch: 'oklch(45.2% 0.198 15.8)', origin: 'Custom', usage: 'Error messages, delete actions', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'destructive' },
+            { name: '--muted', rgb: 'rgba(201, 201, 201, 1)', hex: '#c9c9c9', oklch: 'oklch(82.5% 0 0)', origin: 'Custom', usage: 'Disabled elements', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'muted' },
+            { name: '--muted-foreground', rgb: 'rgba(147, 147, 147, 1)', hex: '#939393', oklch: 'oklch(65.8% 0 0)', origin: 'Custom', usage: 'Secondary text', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'muted' },
+            { name: '--border', rgb: 'rgba(92, 92, 92, 1)', hex: '#5c5c5c', oklch: 'oklch(42.5% 0 0)', origin: 'Custom', usage: 'Default borders', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'border' },
+            { name: '--ring', rgb: 'rgba(0, 30, 91, 1)', hex: '#001e5b', oklch: 'oklch(18.5% 0.085 260.2)', origin: 'Custom', usage: 'Focus rings', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'ring' },
+            { name: '--sidebar-border', rgb: 'rgba(201, 201, 201, 1)', hex: '#c9c9c9', oklch: 'oklch(82.5% 0 0)', origin: 'Custom', usage: 'Sidebar borders', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'muted' },
+            { name: '--sidebar-ring', rgb: 'rgba(0, 30, 91, 1)', hex: '#001e5b', oklch: 'oklch(18.5% 0.085 260.2)', origin: 'Custom', usage: 'Sidebar focus rings', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'ring' },
+            { name: '--sidebar-primary', rgb: 'rgba(6, 106, 254, 1)', hex: '#066afe', oklch: 'oklch(55.2% 0.218 260.5)', origin: 'Custom', usage: 'Primary buttons in sidebar', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'primary' },
+            { name: '--sidebar-primary-foreground', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Text on primary in sidebar', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--sidebar-accent', rgb: 'rgba(2, 80, 217, 1)', hex: '#0250d9', oklch: 'oklch(45.8% 0.245 262.8)', origin: 'Custom', usage: 'Accent in sidebar', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'accent' },
+            { name: '--sidebar-accent-foreground', rgb: 'rgba(255, 255, 255, 1)', hex: '#ffffff', oklch: 'oklch(100% 0 0)', origin: 'Standard', usage: 'Text on accent in sidebar', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'white' },
+            { name: '--chart-1', rgb: 'rgba(2, 80, 217, 1)', hex: '#0250d9', oklch: 'oklch(45.8% 0.245 262.8)', origin: 'Custom', usage: 'Chart color 1', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'accent' },
+            { name: '--chart-2', rgb: 'rgba(26, 185, 255, 1)', hex: '#1ab9ff', oklch: 'oklch(72.5% 0.165 220.5)', origin: 'Custom', usage: 'Chart color 2 (cyan)', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'chart-cyan' },
+            { name: '--chart-3', rgb: 'rgba(150, 2, 199, 1)', hex: '#9602c7', oklch: 'oklch(48.5% 0.285 305.2)', origin: 'Custom', usage: 'Chart color 3 (purple)', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'chart-purple' },
+            { name: '--chart-4', rgb: 'rgba(11, 130, 124, 1)', hex: '#0b827c', oklch: 'oklch(52.5% 0.125 185.5)', origin: 'Custom', usage: 'Chart color 4 (teal)', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'chart-teal' },
+            { name: '--chart-5', rgb: 'rgba(238, 176, 16, 1)', hex: '#eeb010', oklch: 'oklch(78.5% 0.145 85.2)', origin: 'Custom', usage: 'Chart color 5 (yellow)', location: 'src/styles/theme.css', category: 'Custom Variables', ramp: 'chart-yellow' },
+
+            // Tailwind Standard Colors - Blue Ramp
+            { name: 'blue-50', rgb: 'rgb(239, 246, 255)', hex: '#eff6ff', oklch: 'oklch(97% 0.014 254.604)', origin: 'Tailwind', usage: 'Gradients, soft backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-100', rgb: 'rgb(219, 234, 254)', hex: '#dbeafe', oklch: 'oklch(93.2% 0.032 255.585)', origin: 'Tailwind', usage: 'Gradients, effects', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-200', rgb: 'rgb(191, 219, 254)', hex: '#bfdbfe', oklch: 'oklch(88.2% 0.059 254.128)', origin: 'Tailwind', usage: 'Borders, backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-300', rgb: 'rgb(147, 197, 253)', hex: '#93c5fd', oklch: 'oklch(80.9% 0.105 251.813)', origin: 'Tailwind', usage: 'Effects, gradients', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-400', rgb: 'rgb(96, 165, 250)', hex: '#60a5fa', oklch: 'oklch(70.7% 0.165 254.624)', origin: 'Tailwind', usage: 'Used in gradients', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-500', rgb: 'rgb(59, 130, 246)', hex: '#3b82f6', oklch: 'oklch(62.3% 0.214 259.815)', origin: 'Tailwind', usage: 'Used in effects, animations', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-600', rgb: 'rgb(37, 99, 235)', hex: '#2563eb', oklch: 'oklch(54.6% 0.245 262.881)', origin: 'Tailwind', usage: 'Texts, states', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+            { name: 'blue-700', rgb: 'rgb(29, 78, 216)', hex: '#1d4ed8', oklch: 'oklch(48.8% 0.243 264.376)', origin: 'Tailwind', usage: 'Dark texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'blue' },
+
+            // Tailwind Standard Colors - Purple Ramp
+            { name: 'purple-50', rgb: 'rgb(250, 245, 255)', hex: '#faf5ff', oklch: 'oklch(97.7% 0.014 308.299)', origin: 'Tailwind', usage: 'Gradients, backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-100', rgb: 'rgb(243, 232, 255)', hex: '#f3e8ff', oklch: 'oklch(94.6% 0.033 307.174)', origin: 'Tailwind', usage: 'Gradients, effects', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-200', rgb: 'rgb(233, 213, 255)', hex: '#e9d5ff', oklch: 'oklch(90.2% 0.063 306.703)', origin: 'Tailwind', usage: 'Borders, backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-300', rgb: 'rgb(216, 180, 254)', hex: '#d8b4fe', oklch: 'oklch(82.7% 0.119 306.383)', origin: 'Tailwind', usage: 'Hover borders', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-400', rgb: 'rgb(192, 132, 252)', hex: '#c084fc', oklch: 'oklch(71.4% 0.203 305.504)', origin: 'Tailwind', usage: 'Effects', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-500', rgb: 'rgb(168, 85, 247)', hex: '#a855f7', oklch: 'oklch(62.7% 0.265 303.9)', origin: 'Tailwind', usage: 'Used in gradients, animations', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-600', rgb: 'rgb(147, 51, 234)', hex: '#9333ea', oklch: 'oklch(55.8% 0.288 302.321)', origin: 'Tailwind', usage: 'Used in grid, effects', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+            { name: 'purple-700', rgb: 'rgb(126, 34, 206)', hex: '#7e22ce', oklch: 'oklch(49.6% 0.265 301.924)', origin: 'Tailwind', usage: 'Texts, states', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'purple' },
+
+            // Tailwind Standard Colors - Pink Ramp
+            { name: 'pink-50', rgb: 'rgb(253, 242, 248)', hex: '#fdf2f8', oklch: 'oklch(97.1% 0.014 343.198)', origin: 'Tailwind', usage: 'Gradients, backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+            { name: 'pink-100', rgb: 'rgb(252, 231, 243)', hex: '#fce7f3', oklch: 'oklch(94.8% 0.028 342.258)', origin: 'Tailwind', usage: 'Gradients, effects', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+            { name: 'pink-200', rgb: 'rgb(251, 207, 232)', hex: '#fbcfe8', oklch: 'oklch(89.9% 0.061 343.231)', origin: 'Tailwind', usage: 'Borders, backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+            { name: 'pink-400', rgb: 'rgb(244, 114, 182)', hex: '#f472b6', oklch: 'oklch(71.8% 0.202 349.761)', origin: 'Tailwind', usage: 'Used in effects, animations', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+            { name: 'pink-500', rgb: 'rgb(236, 72, 153)', hex: '#ec4899', oklch: 'oklch(65.6% 0.241 354.308)', origin: 'Tailwind', usage: 'Used in animations, effects', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+            { name: 'pink-600', rgb: 'rgb(219, 39, 119)', hex: '#db2777', oklch: 'oklch(59.2% 0.249 358.4)', origin: 'Tailwind', usage: 'States, texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+            { name: 'pink-700', rgb: 'rgb(190, 24, 93)', hex: '#be185d', oklch: 'oklch(52.5% 0.223 3.958)', origin: 'Tailwind', usage: 'Dark texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'pink' },
+
+            // Tailwind Standard Colors - Violet Ramp
+            { name: 'violet-100', rgb: 'rgb(237, 233, 254)', hex: '#ede9fe', oklch: 'oklch(94.3% 0.029 294.588)', origin: 'Tailwind', usage: 'Gradients', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'violet' },
+            { name: 'violet-200', rgb: 'rgb(221, 214, 254)', hex: '#ddd6fe', oklch: 'oklch(89.4% 0.057 293.283)', origin: 'Tailwind', usage: 'Borders', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'violet' },
+            { name: 'violet-400', rgb: 'rgb(167, 139, 250)', hex: '#a78bfa', oklch: 'oklch(70.2% 0.183 293.541)', origin: 'Tailwind', usage: 'Used in effects (FluidShader)', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'violet' },
+            { name: 'violet-500', rgb: 'rgb(139, 92, 246)', hex: '#8b5cf6', oklch: 'oklch(60.6% 0.25 292.717)', origin: 'Tailwind', usage: 'Used in effects, animations', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'violet' },
+            { name: 'violet-600', rgb: 'rgb(124, 58, 237)', hex: '#7c3aed', oklch: 'oklch(54.2% 0.265 291.5)', origin: 'Tailwind', usage: 'Glitch animation', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'violet' },
+
+            // Tailwind Standard Colors - Indigo Ramp
+            { name: 'indigo-100', rgb: 'rgb(224, 231, 255)', hex: '#e0e7ff', oklch: 'oklch(93% 0.034 272.788)', origin: 'Tailwind', usage: 'Used in FluidShader', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'indigo' },
+
+            // Tailwind Standard Colors - Gray Ramp
+            { name: 'gray-50', rgb: 'rgb(249, 250, 251)', hex: '#f9fafb', oklch: 'oklch(98.5% 0.002 247.839)', origin: 'Tailwind', usage: 'Soft backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-100', rgb: 'rgb(243, 244, 246)', hex: '#f3f4f6', oklch: 'oklch(96.7% 0.003 264.542)', origin: 'Tailwind', usage: 'Backgrounds, hover', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-200', rgb: 'rgb(229, 231, 235)', hex: '#e5e7eb', oklch: 'oklch(92.8% 0.006 264.531)', origin: 'Tailwind', usage: 'Borders, backgrounds', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-300', rgb: 'rgb(209, 213, 219)', hex: '#d1d5db', oklch: 'oklch(87.2% 0.01 258.338)', origin: 'Tailwind', usage: 'Borders, states', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-400', rgb: 'rgb(156, 163, 175)', hex: '#9ca3af', oklch: 'oklch(70.7% 0.022 261.325)', origin: 'Tailwind', usage: 'Secondary texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-500', rgb: 'rgb(107, 114, 128)', hex: '#6b7280', oklch: 'oklch(55.1% 0.027 264.364)', origin: 'Tailwind', usage: 'Secondary texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-600', rgb: 'rgb(75, 85, 99)', hex: '#4b5563', oklch: 'oklch(44.6% 0.03 256.802)', origin: 'Tailwind', usage: 'Texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-700', rgb: 'rgb(55, 65, 81)', hex: '#374151', oklch: 'oklch(37.3% 0.034 259.733)', origin: 'Tailwind', usage: 'Dark texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+            { name: 'gray-900', rgb: 'rgb(17, 24, 39)', hex: '#111827', oklch: 'oklch(21% 0.034 264.665)', origin: 'Tailwind', usage: 'Very dark texts', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'gray' },
+
+            // Tailwind Standard Colors - Slate Ramp
+            { name: 'slate-300', rgb: 'rgb(203, 213, 225)', hex: '#cbd5e1', oklch: 'oklch(87.2% 0.01 258.338)', origin: 'Tailwind', usage: 'Stars (retro-bg)', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'slate' },
+            { name: 'slate-400', rgb: 'rgb(148, 163, 184)', hex: '#94a3b8', oklch: 'oklch(70.7% 0.022 261.325)', origin: 'Tailwind', usage: 'Buildings (retro-bg)', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'slate' },
+            { name: 'slate-500', rgb: 'rgb(100, 116, 139)', hex: '#64748b', oklch: 'oklch(55.1% 0.027 264.364)', origin: 'Tailwind', usage: 'Dot grid (DotGrid)', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'slate' },
+            { name: 'slate-700', rgb: 'rgb(51, 65, 85)', hex: '#334155', oklch: 'oklch(37.3% 0.034 256.8)', origin: 'Tailwind', usage: 'Grid dots', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'slate' },
+
+            // Tailwind Standard Colors - Amber/Orange Ramp
+            { name: 'amber-300', rgb: 'rgb(253, 224, 71)', hex: '#fde047', oklch: 'oklch(87.9% 0.169 91.605)', origin: 'Tailwind', usage: 'Sun (retro-bg)', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'amber' },
+            { name: 'orange-400', rgb: 'rgb(251, 146, 60)', hex: '#fb923c', oklch: 'oklch(75% 0.183 55.934)', origin: 'Tailwind', usage: 'Sun (retro-bg)', location: 'Tailwind CSS v4', category: 'Tailwind Standard', ramp: 'orange' },
+
+            // Tailwind Standard Colors - Green Ramp (MachineView)
+            { name: 'green-400', rgb: 'rgb(74, 222, 128)', hex: '#4ade80', oklch: 'oklch(75.5% 0.185 155.2)', origin: 'Tailwind', usage: 'Check icon when copy succeeds', location: 'Tailwind CSS v4', category: 'MachineView', ramp: 'green' },
+            { name: 'green-600', rgb: 'rgb(22, 163, 74)', hex: '#16a34a', oklch: 'oklch(58.5% 0.195 150.5)', origin: 'Tailwind', usage: 'Icon and text when machine mode is active', location: 'Tailwind CSS v4', category: 'MachineView', ramp: 'green' },
+
+            // Custom inline colors
+            { name: 'Pink-50 (retro-bg variant)', rgb: 'rgb(254, 243, 250)', hex: '#fef3fa', oklch: 'oklch(97.2% 0.014 343.2)', origin: 'Custom', usage: 'Sky gradient (retro-bg)', location: 'src/styles/retro-bg.css', category: 'Inline CSS', ramp: 'pink-custom' },
+            { name: 'Custom Blue (mountains)', rgb: 'rgb(125, 180, 240)', hex: '#7db4f0', oklch: 'oklch(74.2% 0.142 245.8)', origin: 'Custom', usage: 'Mountains (gradient)', location: 'src/styles/retro-bg.css', category: 'Inline CSS', ramp: 'custom-blue' },
+            { name: 'Custom Slate (buildings)', rgb: 'rgb(125, 140, 165)', hex: '#7d8ca5', oklch: 'oklch(62.5% 0.028 258.5)', origin: 'Custom', usage: 'Alternate buildings (gradient)', location: 'src/styles/retro-bg.css', category: 'Inline CSS', ramp: 'custom-slate' },
+            { name: 'Cloud Dancer', rgb: 'rgb(240, 237, 232)', hex: '#f0ede8', oklch: 'oklch(95.2% 0.008 85.5)', origin: 'Custom', usage: 'Grid fade', location: 'src/styles/retro-bg.css', category: 'Inline CSS', ramp: 'cloud-dancer' },
+        ];
+
+        // Group colors by ramp
+        const ramps = {};
+        const individual = [];
+
+        colors.forEach(color => {
+            if (color.ramp && (color.category === 'Tailwind Standard' || color.category === 'MachineView')) {
+                if (!ramps[color.ramp]) {
+                    ramps[color.ramp] = [];
+                }
+                ramps[color.ramp].push(color);
+            } else {
+                individual.push(color);
+            }
+        });
+
+        // Sort colors within each ramp by name (to get 50, 100, 200, etc. order)
+        Object.keys(ramps).forEach(ramp => {
+            ramps[ramp].sort((a, b) => {
+                const aNum = parseInt(a.name.match(/\d+/)?.[0] || '999');
+                const bNum = parseInt(b.name.match(/\d+/)?.[0] || '999');
+                return aNum - bNum;
+            });
+        });
+
+        // Render swatches
+        const container = document.getElementById('swatches-container');
+
+        function createSwatch(color) {
+            const swatch = document.createElement('div');
+            swatch.className = 'swatch';
+            
+            const colorDiv = document.createElement('div');
+            colorDiv.className = 'swatch-color';
+            if (color.hex === 'transparent' || color.rgb.includes('transparent') || color.rgb.includes('rgba(0, 0, 0, 0)')) {
+                colorDiv.classList.add('transparent');
+            } else {
+                colorDiv.style.backgroundColor = color.hex;
+            }
+            
+            const info = document.createElement('div');
+            info.className = 'swatch-info';
+            
+            const name = document.createElement('div');
+            name.className = 'swatch-name';
+            name.textContent = color.name;
+            
+            const details = document.createElement('div');
+            details.className = 'swatch-details';
+            
+            const hexDetail = document.createElement('div');
+            hexDetail.className = 'swatch-detail';
+            hexDetail.innerHTML = `<span class="swatch-detail-label">HEX:</span> ${color.hex}`;
+            
+            const oklchDetail = document.createElement('div');
+            oklchDetail.className = 'swatch-detail';
+            oklchDetail.innerHTML = `<span class="swatch-detail-label">oklch:</span> ${color.oklch}`;
+            
+            details.appendChild(hexDetail);
+            details.appendChild(oklchDetail);
+            
+            const button = document.createElement('button');
+            button.className = 'swatch-button';
+            button.textContent = color.name.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+            button.onclick = (e) => {
+                e.stopPropagation();
+                copyColor(color.hex, swatch);
+            };
+            
+            info.appendChild(name);
+            info.appendChild(details);
+            info.appendChild(button);
+            
+            swatch.appendChild(colorDiv);
+            swatch.appendChild(info);
+            
+            swatch.onclick = () => copyColor(color.hex, swatch);
+            
+            return swatch;
+        }
+
+        function copyColor(hex, swatch) {
+            navigator.clipboard.writeText(hex).then(() => {
+                const button = swatch.querySelector('.swatch-button');
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#10b981';
+                button.style.color = 'white';
+                button.style.borderColor = '#10b981';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#f3f4f6';
+                    button.style.color = '#374151';
+                    button.style.borderColor = '#e5e7eb';
+                }, 1500);
+            });
+        }
+
+        // Render Tailwind ramps
+        Object.keys(ramps).sort().forEach(rampName => {
+            const section = document.createElement('div');
+            section.className = 'section';
+            
+            const rampDiv = document.createElement('div');
+            rampDiv.className = 'color-ramp';
+            
+            const header = document.createElement('div');
+            header.className = 'ramp-header';
+            
+            const name = document.createElement('div');
+            name.className = 'ramp-name';
+            name.textContent = rampName.charAt(0).toUpperCase() + rampName.slice(1) + ' Ramp';
+            
+            const info = document.createElement('div');
+            info.className = 'ramp-info';
+            info.textContent = `${ramps[rampName].length} shades`;
+            
+            header.appendChild(name);
+            header.appendChild(info);
+            
+            const grid = document.createElement('div');
+            grid.className = 'swatches-ramp';
+            
+            ramps[rampName].forEach(color => {
+                const swatch = createSwatch(color);
+                grid.appendChild(swatch);
+            });
+            
+            rampDiv.appendChild(header);
+            rampDiv.appendChild(grid);
+            section.appendChild(rampDiv);
+            container.appendChild(section);
+        });
+
+        // Render individual colors by category
+        const individualByCategory = {};
+        individual.forEach(color => {
+            if (!individualByCategory[color.category]) {
+                individualByCategory[color.category] = [];
+            }
+            individualByCategory[color.category].push(color);
+        });
+
+        Object.keys(individualByCategory).forEach(category => {
+            const section = document.createElement('div');
+            section.className = 'section';
+            
+            const title = document.createElement('h2');
+            title.className = 'section-title';
+            title.textContent = category;
+            section.appendChild(title);
+            
+            const grid = document.createElement('div');
+            grid.className = 'individual-swatches';
+            
+            individualByCategory[category].forEach(color => {
+                const swatch = createSwatch(color);
+                grid.appendChild(swatch);
+            });
+            
+            section.appendChild(grid);
+            container.appendChild(section);
+        });
+
+        // Update stats
+        document.getElementById('total-colors').textContent = colors.length;
+        document.getElementById('standard-colors').textContent = colors.filter(c => c.origin === 'Tailwind').length;
+        document.getElementById('custom-colors').textContent = colors.filter(c => c.origin === 'Custom').length;
+        document.getElementById('ramps-count').textContent = Object.keys(ramps).length;
+        }); // End DOMContentLoaded
+    </script>
+</body>
+</html>
