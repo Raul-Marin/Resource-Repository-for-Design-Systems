@@ -93,6 +93,7 @@
       }
     }
   },
+  "utilities": {},
   "tokens": {
     "type": "css-variables",
     "css": [
@@ -122,6 +123,7 @@
         "name": "PrimaryButton"
       },
       "type": "input",
+      "variants": [],
       "defaultProps": {
         "children": "Click me",
         "type": "button",
@@ -138,6 +140,7 @@
         "name": "SecondaryButton"
       },
       "type": "input",
+      "variants": [],
       "defaultProps": {
         "children": "Secondary",
         "type": "button"
@@ -153,6 +156,7 @@
         "name": "Logo"
       },
       "type": "display",
+      "variants": [],
       "forge": {
         "showcase": "<Logo />"
       }
@@ -164,6 +168,7 @@
         "name": "Sidebar"
       },
       "type": "layout",
+      "variants": [],
       "model": {
         "pattern": "controlledValue",
         "events": ["onSectionChange"]
@@ -180,6 +185,7 @@
         "name": "Footer"
       },
       "type": "layout",
+      "variants": [],
       "defaultProps": {
         "machineMode": false
       }
@@ -191,6 +197,7 @@
         "name": "SuggestModal"
       },
       "type": "overlay",
+      "variants": [],
       "model": {
         "pattern": "controlledBoolean",
         "events": ["onClose"]
@@ -211,6 +218,7 @@
         "name": "LoadingState"
       },
       "type": "feedback",
+      "variants": [],
       "forge": {
         "showcase": "<LoadingState />"
       }
@@ -222,6 +230,7 @@
         "name": "AnimatedCounter"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "value": 42,
         "duration": 2000
@@ -233,7 +242,8 @@
         "type": "named",
         "name": "CustomCursor"
       },
-      "type": "display"
+      "type": "display",
+      "variants": []
     },
     "RetroBackground": {
       "entry": "src/app/components/RetroBackground.tsx",
@@ -241,7 +251,8 @@
         "type": "named",
         "name": "RetroBackground"
       },
-      "type": "layout"
+      "type": "layout",
+      "variants": []
     },
     "DotGrid": {
       "entry": "src/app/components/DotGrid.tsx",
@@ -249,7 +260,8 @@
         "type": "named",
         "name": "DotGrid"
       },
-      "type": "layout"
+      "type": "layout",
+      "variants": []
     },
     "PixelCharacter": {
       "entry": "src/app/components/PixelCharacter.tsx",
@@ -258,6 +270,7 @@
         "name": "PixelCharacter"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "characterIndex": 0
       }
@@ -269,6 +282,7 @@
         "name": "FolderSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -280,6 +294,7 @@
         "name": "PackageSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -291,6 +306,7 @@
         "name": "ClipboardSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -302,6 +318,7 @@
         "name": "BookSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -313,6 +330,7 @@
         "name": "ChatSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -324,6 +342,7 @@
         "name": "HomeSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -335,6 +354,7 @@
         "name": "RefreshSparkleIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-6 h-6"
       }
@@ -346,6 +366,7 @@
         "name": "MCPIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": "w-4 h-4"
       }
@@ -357,6 +378,7 @@
         "name": "AntDesignXIcon"
       },
       "type": "display",
+      "variants": [],
       "defaultProps": {
         "className": ""
       }
