@@ -96,16 +96,8 @@
   "utilities": {},
   "tokens": {
     "type": "css-variables",
-    "css": [
-      "src/styles/theme.css"
-    ],
-    "categories": {
-      "colors": "--color-",
-      "typography": "--text-",
-      "radius": "--radius",
-      "shadows": "--elevation-",
-      "spacing": "--font-"
-    }
+    "css": [],
+    "categories": {}
   },
   "assets": {
     "images": "src/assets",
