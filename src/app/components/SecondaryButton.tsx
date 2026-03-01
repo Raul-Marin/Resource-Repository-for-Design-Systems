@@ -1,5 +1,7 @@
 import svgPaths from "../../imports/svg-7fgtywvn1f";
-import imgButtonContainerHover from "@/assets/e38155586d0186624512ff563492afa8749edef5.png";
+
+// Gradient inline para evitar imports de assets que fallan en sandbox (UI Forge)
+const HOVER_GRADIENT = "linear-gradient(90deg, #0250D9 0%, #1AB9FF 35%, #9602C7 71%, #0250D9 100%)";
 
 interface SecondaryButtonProps {
   children: React.ReactNode;
@@ -58,11 +60,11 @@ export function SecondaryButton({ children, onClick, icon, className = "", type 
       className={`content-stretch flex isolate items-start relative rounded-full transition-transform hover:scale-[1.02] active:scale-[0.98] group w-full sm:w-auto ${className}`}
     >
       <div className="content-stretch flex gap-2 h-[44px] isolate items-center justify-center px-4 py-0 relative rounded-full shrink-0 z-[2] bg-white group-hover:bg-transparent w-full">
-        {/* Hover background image */}
-        <img 
-          alt="" 
-          className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none rounded-full size-full opacity-0 group-hover:opacity-100 transition-opacity" 
-          src={imgButtonContainerHover} 
+        {/* Hover background - gradiente inline (sin import de assets) */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none rounded-full size-full opacity-0 group-hover:opacity-100 transition-opacity"
+          style={{ background: HOVER_GRADIENT }}
         />
         
         {/* Default border (dark) */}
