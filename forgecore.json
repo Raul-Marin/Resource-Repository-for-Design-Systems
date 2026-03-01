@@ -42,7 +42,7 @@
       "version": "18.x"
     },
     "bundler": {
-      "type": "vite",
+      "type": "esbuild",
       "platform": "browser",
       "jsx": "automatic",
       "tsconfigPath": "tsconfig.json",
@@ -70,7 +70,7 @@
       "applyTo": "documentElement"
     },
     "mount": {
-      "rootId": "root",
+      "rootId": "forge-root",
       "wrapper": {
         "element": "div",
         "props": {
@@ -96,8 +96,14 @@
   "utilities": {},
   "tokens": {
     "type": "css-variables",
-    "css": [],
-    "categories": {}
+    "css": ["src/styles/theme.css"],
+    "categories": {
+      "colors": "--color-",
+      "typography": "--text-",
+      "radius": "--radius",
+      "shadows": "--elevation-",
+      "spacing": "--space-"
+    }
   },
   "assets": {
     "images": "src/assets",
