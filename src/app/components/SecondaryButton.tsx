@@ -1,5 +1,5 @@
 import svgPaths from "../../imports/svg-7fgtywvn1f";
-import imgButtonContainerHover from "../../assets/e38155586d0186624512ff563492afa8749edef5.png";
+import imgButtonContainerHover from "@/assets/e38155586d0186624512ff563492afa8749edef5.png";
 
 interface SecondaryButtonProps {
   children: React.ReactNode;
