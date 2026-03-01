@@ -1,0 +1,365 @@
+{
+  "$schema": "https://forgecore.dev/schemas/forgecore.v1.json",
+  "forgecoreVersion": "1.0.0",
+  "name": "resource-repo-ds",
+  "package": {
+    "displayName": "Resource Repository for Design Systems",
+    "npmName": "@figma/my-make-file",
+    "version": "0.0.1",
+    "license": "MIT",
+    "repoURL": "https://github.com/Raul-Marin/Resource-Repository-for-Design-Systems.git",
+    "homepage": "",
+    "author": ""
+  },
+  "metadata": {
+    "framework": "react",
+    "language": "typescript",
+    "moduleFormat": "esm",
+    "monorepo": false,
+    "entryStrategy": "source",
+    "notes": [
+      "Repositorio de recursos para design systems. Incluye componentes UI, tokens CSS, assets y showcase de design systems."
+    ]
+  },
+  "preview": {
+    "mode": "esbuild",
+    "theme": "light",
+    "background": "#ffffff",
+    "viewport": {
+      "width": 1200,
+      "height": 800,
+      "deviceScaleFactor": 1
+    },
+    "behavior": {
+      "disableAnimations": false,
+      "preferReducedMotion": false,
+      "logEvents": true,
+      "captureConsole": true
+    }
+  },
+  "runtime": {
+    "react": {
+      "version": "18.x"
+    },
+    "bundler": {
+      "type": "vite",
+      "platform": "browser",
+      "jsx": "automatic",
+      "tsconfigPath": "tsconfig.json",
+      "define": {
+        "process.env.NODE_ENV": "\"production\""
+      }
+    },
+    "aliases": {
+      "@": "src"
+    },
+    "globalCss": [
+      "src/styles/index.css",
+      "src/styles/fonts.css",
+      "src/styles/tailwind.css",
+      "src/styles/theme.css",
+      "src/styles/clouds.css",
+      "src/styles/retro-bg.css",
+      "src/styles/pixel-city.css"
+    ],
+    "theme": {
+      "strategy": "class",
+      "attribute": "class",
+      "values": ["light"],
+      "default": "light",
+      "applyTo": "documentElement"
+    },
+    "mount": {
+      "rootId": "root",
+      "wrapper": {
+        "element": "div",
+        "props": {
+          "style": "min-height:100vh; padding:24px; box-sizing:border-box;"
+        }
+      }
+    },
+    "portals": {
+      "enabled": true,
+      "rootId": "forge-portal-root",
+      "attachTo": "body",
+      "createIfMissing": true
+    },
+    "stubs": {
+      "icons": {
+        "library": "lucide-react",
+        "enabled": true,
+        "strategy": "component",
+        "fallback": "span"
+      }
+    }
+  },
+  "tokens": {
+    "type": "css-variables",
+    "css": [
+      "src/styles/theme.css"
+    ],
+    "categories": {
+      "colors": "--color-",
+      "typography": "--text-",
+      "radius": "--radius",
+      "shadows": "--elevation-",
+      "spacing": "--font-"
+    }
+  },
+  "assets": {
+    "images": "src/assets",
+    "fonts": "public/fonts",
+    "icons": {
+      "library": "lucide-react",
+      "stub": true
+    }
+  },
+  "components": {
+    "PrimaryButton": {
+      "entry": "src/app/components/PrimaryButton.tsx",
+      "export": {
+        "type": "named",
+        "name": "PrimaryButton"
+      },
+      "type": "input",
+      "defaultProps": {
+        "children": "Click me",
+        "type": "button",
+        "disabled": false
+      },
+      "forge": {
+        "showcase": "<PrimaryButton>Click me</PrimaryButton>"
+      }
+    },
+    "SecondaryButton": {
+      "entry": "src/app/components/SecondaryButton.tsx",
+      "export": {
+        "type": "named",
+        "name": "SecondaryButton"
+      },
+      "type": "input",
+      "defaultProps": {
+        "children": "Secondary",
+        "type": "button"
+      },
+      "forge": {
+        "showcase": "<SecondaryButton>Secondary</SecondaryButton>"
+      }
+    },
+    "Logo": {
+      "entry": "src/app/components/Logo.tsx",
+      "export": {
+        "type": "named",
+        "name": "Logo"
+      },
+      "type": "display",
+      "forge": {
+        "showcase": "<Logo />"
+      }
+    },
+    "Sidebar": {
+      "entry": "src/app/components/Sidebar.tsx",
+      "export": {
+        "type": "named",
+        "name": "Sidebar"
+      },
+      "type": "layout",
+      "model": {
+        "pattern": "controlledValue",
+        "events": ["onSectionChange"]
+      },
+      "defaultProps": {
+        "activeSection": "home",
+        "onSectionChange": "() => {}"
+      }
+    },
+    "Footer": {
+      "entry": "src/app/components/Footer.tsx",
+      "export": {
+        "type": "named",
+        "name": "Footer"
+      },
+      "type": "layout",
+      "defaultProps": {
+        "machineMode": false
+      }
+    },
+    "SuggestModal": {
+      "entry": "src/app/components/SuggestModal.tsx",
+      "export": {
+        "type": "named",
+        "name": "SuggestModal"
+      },
+      "type": "overlay",
+      "model": {
+        "pattern": "controlledBoolean",
+        "events": ["onClose"]
+      },
+      "defaultProps": {
+        "isOpen": true,
+        "onClose": "() => {}"
+      },
+      "forge": {
+        "requiresPortal": true,
+        "showcase": "<SuggestModal isOpen={props.isOpen} onClose={() => {}} />"
+      }
+    },
+    "LoadingState": {
+      "entry": "src/app/components/LoadingState.tsx",
+      "export": {
+        "type": "named",
+        "name": "LoadingState"
+      },
+      "type": "feedback",
+      "forge": {
+        "showcase": "<LoadingState />"
+      }
+    },
+    "AnimatedCounter": {
+      "entry": "src/app/components/AnimatedCounter.tsx",
+      "export": {
+        "type": "named",
+        "name": "AnimatedCounter"
+      },
+      "type": "display",
+      "defaultProps": {
+        "value": 42,
+        "duration": 2000
+      }
+    },
+    "CustomCursor": {
+      "entry": "src/app/components/CustomCursor.tsx",
+      "export": {
+        "type": "named",
+        "name": "CustomCursor"
+      },
+      "type": "display"
+    },
+    "RetroBackground": {
+      "entry": "src/app/components/RetroBackground.tsx",
+      "export": {
+        "type": "named",
+        "name": "RetroBackground"
+      },
+      "type": "layout"
+    },
+    "DotGrid": {
+      "entry": "src/app/components/DotGrid.tsx",
+      "export": {
+        "type": "named",
+        "name": "DotGrid"
+      },
+      "type": "layout"
+    },
+    "PixelCharacter": {
+      "entry": "src/app/components/PixelCharacter.tsx",
+      "export": {
+        "type": "named",
+        "name": "PixelCharacter"
+      },
+      "type": "display",
+      "defaultProps": {
+        "characterIndex": 0
+      }
+    },
+    "FolderSparkleIcon": {
+      "entry": "src/app/components/icons/FolderSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "FolderSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "PackageSparkleIcon": {
+      "entry": "src/app/components/icons/PackageSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "PackageSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "ClipboardSparkleIcon": {
+      "entry": "src/app/components/icons/ClipboardSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "ClipboardSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "BookSparkleIcon": {
+      "entry": "src/app/components/icons/BookSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "BookSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "ChatSparkleIcon": {
+      "entry": "src/app/components/icons/ChatSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "ChatSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "HomeSparkleIcon": {
+      "entry": "src/app/components/icons/HomeSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "HomeSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "RefreshSparkleIcon": {
+      "entry": "src/app/components/icons/RefreshSparkleIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "RefreshSparkleIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-6 h-6"
+      }
+    },
+    "MCPIcon": {
+      "entry": "src/app/components/icons/MCPIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "MCPIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": "w-4 h-4"
+      }
+    },
+    "AntDesignXIcon": {
+      "entry": "src/app/components/icons/AntDesignXIcon.tsx",
+      "export": {
+        "type": "named",
+        "name": "AntDesignXIcon"
+      },
+      "type": "display",
+      "defaultProps": {
+        "className": ""
+      }
+    }
+  }
+}
